@@ -1,0 +1,4 @@
+__pycache__/
+ckpts/
+input.csv
+api_key
