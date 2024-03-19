@@ -76,7 +76,7 @@ class NeuralRunner():
       df = pd.DataFrame(columns=['emotion', 'scene', 'action', 'light', 'preference'])
       df.to_csv('input.csv', index=False)
     df = pd.read_csv('input.csv')
-    df = df.append({'emotion': emotion, 'scene': scene, 'action': action, 'light': light, 'preference': preference}, ignore_index=True)
+    df = pd.concat([df, pd.DataFrame({'emotion': emotion, 'scene': scene, 'action': action, 'light': light, 'preference': preference}, index=[0])])
     df.to_csv('input.csv', index=False)
     return
 
