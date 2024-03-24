@@ -1,5 +1,6 @@
 import base64
 import requests
+import time
 
 def get_emotion_text(text: str) -> str:
   f = open("api_key", "r")
@@ -72,5 +73,8 @@ def get_emotion_image(image_path: str) -> str:
   return response
 
 if __name__ == "__main__":
+  t1 = time.time()
   # get_emotion_text("学习好累我不想干了。")
   get_emotion_image("hqx_happy.jpg")
+  t2 = time.time()
+  print("Used time: ", t2 - t1, "s")
