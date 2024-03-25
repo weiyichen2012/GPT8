@@ -12,15 +12,13 @@ import time
 emotionList = ['happy', 'sad', 'neutral']
 sceneList = ['study', 'gaming', 'idle']
 
-actionList = ['keep_still', 'pat_pat', 'dance', 'sing']
-lightList = ['red', 'blue', 'white', 'yellow']
-
-class ReactionNeuralRunner():
+class PredictionNeuralRunner():
   def __init__(self) -> None:
     self.devices = torch.device('cpu')
     self.total_iterations = 1000
-    self.input_dim = len(emotionList) + len(sceneList)
-    self.output_dim = len(actionList) + len(lightList)
+    self.PastListLen = 10
+    self.input_dim = (len(emotionList) + len(sceneList)) * 10
+    self.output_dim = len(emotionList)
 
     self.network = NeuralNetwork(self.input_dim, self.output_dim)
     params = list(self.network.parameters())
@@ -28,12 +26,13 @@ class ReactionNeuralRunner():
                                       weight_decay=float(5e-4),
                                       betas=(0.9, 0.999))
     self.cosine_scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer=self.optimizer,
-                                                                    T_max=float(50), eta_min=float(1e-6),
+                                                                    T_max=float(100), eta_min=float(1e-6),
                                                                     last_epoch=-1)
 
     self.current_iteration = 1
     self.load_checkpoints()
     self.save_freq = 100
+    self.read_info()
     return
   
   def read_info(self):
@@ -41,44 +40,54 @@ class ReactionNeuralRunner():
     self.train_input = []
     self.train_label = []
 
-    for i in range(0, len(df)):
-      self.train_input.append([])
-      for j in range(0, len(emotionList)):
-        if df['emotion'][i] == emotionList[j]:
-          self.train_input[i].append(1)
-        else:
-          self.train_input[i].append(0)
+    testLen = 200
+    self.test_input = []
+    self.test_label = []
 
-      for j in range(0, len(sceneList)):
-        if df['scene'][i] == sceneList[j]:
-          self.train_input[i].append(1)
-        else:
-          self.train_input[i].append(0)
-        
+    pastEmotionList = []
+    pastSceneList = []
+
+    PastListLen = self.PastListLen
+
+    for i in range(0, PastListLen):
+      pastEmotionList.append(df['emotion'][i])
+      pastSceneList.append(df['scene'][i])
+
+    for i in range(0, len(df) - 1 - PastListLen):
+      self.train_input.append([])
+      for j in range(0, PastListLen):
+        currI = i + j
+        for k in range(0, len(emotionList)):
+          if df['emotion'][currI] == emotionList[k]:
+            self.train_input[i].append(1)
+          else:
+            self.train_input[i].append(0)
+
+      for j in range(0, PastListLen):
+        currI = i + j
+        for k in range(0, len(sceneList)):
+          if df['scene'][currI] == sceneList[k]:
+            self.train_input[i].append(1)
+          else:
+            self.train_input[i].append(0)
+      
+      currI = i + 1
       self.train_label.append([])
-      for j in range(0, len(actionList)):
-        if df['action'][i] == actionList[j]:
-          self.train_label[i].append(df['preference'][i])
+      for k in range(0, len(emotionList)):
+        if df['emotion'][currI] == emotionList[k]:
+          self.train_label[i].append(1)
         else:
           self.train_label[i].append(0)
-        
-      for j in range(0, len(lightList)):
-        if df['light'][i] == lightList[j]:
-          self.train_label[i].append(df['preference'][i])
-        else:
-          self.train_label[i].append(0)
-    
+
+    self.test_input = self.train_input[-testLen:]
+    self.test_label = self.train_label[-testLen:]
+    self.train_input = self.train_input[:-testLen]
+    self.train_label = self.train_label[:-testLen]
+      
     self.train_input = torch.tensor(self.train_input, dtype=torch.float32)
     self.train_label = torch.tensor(self.train_label, dtype=torch.float32)
-
-  def add_info(self, emotion, scene, action, light, preference):
-    if not os.path.exists('input.csv'):
-      df = pd.DataFrame(columns=['emotion', 'scene', 'action', 'light', 'preference'])
-      df.to_csv('input.csv', index=False)
-    df = pd.read_csv('input.csv')
-    df.loc[len(df.index)] = [emotion, scene, action, light, preference]
-    df.to_csv('input.csv', index=False)
-    return
+    self.test_input = torch.tensor(self.test_input, dtype=torch.float32)
+    self.test_label = torch.tensor(self.test_label, dtype=torch.float32)
 
   def load_checkpoints(self):
     ckptsdir = os.path.join('ckpts')
@@ -120,17 +129,12 @@ class ReactionNeuralRunner():
 
   def train(self):
     # print("Start training. Current Iteration:%d", self.current_iteration)
-    if self.current_iteration == 1:
-      i_range = 50
-    else:
-      i_range = 100
-
     t1 = time.time()
-    for i in range(0, i_range):
+    for i in range(0, self.total_iterations):
         # with tqdm(total=self.total_iterations, desc=f"Iteration {self.current_iteration}/{self.total_iterations}") as pbar:
             # for train_input, train_label in self.train_iter:
-          # if self.current_iteration > self.total_iterations:
-          #     break
+        if self.current_iteration > self.total_iterations:
+          break
           
         result = self.network.forward(self.train_input)
         loss = img2me(result, self.train_label)
@@ -145,9 +149,9 @@ class ReactionNeuralRunner():
           # pbar.update(1)
           # pbar.set_description(f"Iteration {self.current_iteration}/{self.total_iterations}")
           # pbar.set_postfix_str('loss = {:.6f}, lr = {:.6f}'.format(loss.item(), self.optimizer.param_groups[0]['lr']))
-          # print(f"Iteration {self.current_iteration}/{self.total_iterations} loss = {loss.item()}, lr = {self.optimizer.param_groups[0]['lr']}")
+        print(f"Iteration {self.current_iteration}/{self.total_iterations} loss = {loss.item()}, lr = {self.optimizer.param_groups[0]['lr']}")
 
-        if i == 99:
+        if i % 100 == 0:
             ckptname = self.save_checkpoint()
               # pbar.write('Saved checkpoints at {}'.format(ckptname))
     t2 = time.time()
@@ -155,50 +159,31 @@ class ReactionNeuralRunner():
 
 
 
-  def eval_network(self, emotion, scene, ifSomeRandom = False):
-    i = 0
-    self.train_input = [[]]
-    for j in range(0, len(emotionList)):
-      if emotion == emotionList[j]:
-          self.train_input[i].append(1)
-      else:
-          self.train_input[i].append(0)
-      
-    for j in range(0, len(sceneList)):
-      if scene == sceneList[j]:
-          self.train_input[i].append(1)
-      else:
-          self.train_input[i].append(0)
+  def eval_network(self):
+    result = self.network.forward(self.test_input)
+    loss = img2me(result, self.test_label)
+    print("Test Loss: ", loss.item())
 
-    self.train_input = torch.tensor(self.train_input, dtype=torch.float32)
-    result = self.network.forward(self.train_input)
     result = result.detach().numpy()
+    test_label = self.test_label.detach().numpy()
 
-    action = actionList[result[0][0: len(actionList)].argmax()]
-    light = lightList[result[0][len(actionList):].argmax()]
-
-    if np.random.rand() < 0.2 and ifSomeRandom:
-      action = random.choice(actionList)
-      light = random.choice(lightList)
-      print("This is random Response")
-    
-    return action, light
-
-      
+    match_sum = 0
+    mismatch_sum = 0
+    for i in range(0, len(result)):
+      result_values = list(result[i])
+      train_index = max(range(len(result_values)), key=result_values.__getitem__)
+      actual_values = list(test_label[i])
+      actual_index = max(range(len(actual_values)), key=actual_values.__getitem__)
+      if train_index != actual_index:
+        mismatch_sum += 1
+      else:
+        match_sum += 1
+      print(emotionList[train_index], emotionList[actual_index], "Confidence ", result_values[train_index])
+    print("Match: ", match_sum, "Mismatch: ", mismatch_sum)
 
 if __name__ == '__main__':
   warnings.simplefilter(action='ignore', category=FutureWarning)
-  worker = ReactionNeuralRunner()
-  np.random.seed()
-#   worker.train()
-#   worker.eval_network()
-  while True:
-    emotion = random.choice(emotionList)
-    scene = random.choice(sceneList)
-    action, light = worker.eval_network(emotion, scene, ifSomeRandom=True)
-
-    print("When you are " + emotion + " and " + scene + ' it ' + action + ' and ' + light)
-    preference = float(input('preference(from -1 to 1, -1: dislike, 0: neutral 1: like): '))
-    worker.add_info(emotion, scene, action, light, preference)
-    worker.read_info()
-    worker.train()
+  worker = PredictionNeuralRunner()
+  # np.random.seed()
+  # worker.train()
+  worker.eval_network()
