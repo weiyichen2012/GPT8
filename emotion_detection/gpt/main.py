@@ -1,9 +1,23 @@
 import base64
 import requests
+import time
+import regex
+
+emotionList = ['开心', '悲伤', '中立']
 
 def get_emotion_text(text: str) -> str:
   f = open("api_key", "r")
   api_key = f.readline()
+
+  sentence = ""
+  for i in range(0, len(emotionList)):
+    if i == len(emotionList) - 1:
+      sentence += emotionList[i] + "."
+    else:
+      sentence += emotionList[i] + ", "
+  sentence = "如果你听到有人说\"" + text + "\", 他是哪种情绪?" + sentence
+  sentence += " 用数字与%表达没种情绪的可能性，总和应为100%。只需回答情绪+数字。"
+  print(sentence)
 
   headers = {
     "Content-Type": "application/json",
@@ -18,7 +32,7 @@ def get_emotion_text(text: str) -> str:
         "content": [
           {
             "type": "text",
-            "text": "一个人说" + text + "他的情绪是以下哪种？开心，悲伤，愤怒，焦虑，无聊，恐惧，惊讶，厌恶，烦躁，中立。无需其他内容，仅仅回答每种情绪的可能性，用数字%表达。"
+            "text": sentence
           }
         ]
       }
@@ -27,7 +41,15 @@ def get_emotion_text(text: str) -> str:
   }
 
   response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload, proxies={"https": "http://127.0.0.1:1080"})
-  print(response.json()["choices"][0]['message']['content'])
+  content = response.json()["choices"][0]['message']['content']
+  print(content)
+  for i in range(0, len(emotionList)):
+    possibility = regex.regex.findall(emotionList[i] + r".*?([\d]+)%", content)
+    if possibility:
+      possibility = possibility[0]
+    else:
+      possibility = 0.0
+    print(emotionList[i], possibility)
   return response
 
 def encode_image(image_path):
@@ -72,5 +94,9 @@ def get_emotion_image(image_path: str) -> str:
   return response
 
 if __name__ == "__main__":
-  # get_emotion_text("学习好累我不想干了。")
-  get_emotion_image("hqx_happy.jpg")
+  t1 = time.time()
+  # get_emotion_text("I'm so tired of studying")
+  get_emotion_text("这游戏太好玩了")
+  # get_emotion_image("hqx_happy.jpg")
+  t2 = time.time()
+  print("Used time: ", t2 - t1, "s")
