@@ -5,6 +5,11 @@ import regex
 
 emotionList = ['开心', '悲伤', '中立']
 
+class EmotionDetectionRunner():
+  def __init__(self, baseDir) -> None:
+    self.baseDir = baseDir
+    return
+
 def get_emotion_text(text: str) -> str:
   f = open("api_key", "r")
   api_key = f.readline()

@@ -7,7 +7,7 @@ if __name__ == '__main__':
   sceneList = ['study', 'gaming', 'idle']
 
   prediction_runner = prediction_train.PredictionRunner(baseDir, emotionList, sceneList)
-  prediction_runner.train()
-  # prediction_runner.eval_network()
+  # prediction_runner.train()
+  prediction_runner.eval_network()
 
 # print(baseDir)
