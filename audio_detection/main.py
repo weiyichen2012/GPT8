@@ -5,6 +5,7 @@ from threading import Thread
 from queue import Queue
 import time
 
+os.environ['http_proxy'] = 'localhost:1080'
 os.environ['https_proxy'] = 'localhost:1080'
 
 class AudioDetectionRunner():
@@ -20,23 +21,30 @@ class AudioDetectionRunner():
             audio = self.audio_queue.get()  # retrieve the next audio processing job from the main thread
             if audio is None: break  # stop processing if the main thread is done
 
-            print("recognizing")
-            data = audio.get_flac_data()
-            f = open("output.flac", "wb")
-            f.write(data)
-            f.close()
-            f = open("api_key", "r")
-            api_key = f.readline()
-            client = OpenAI(api_key=api_key)
-            audio_file = open("output.flac", "rb")
-            transcription = client.audio.transcriptions.create(
-                model="whisper-1", 
-                file=audio_file,
-                response_format="text",
-                language="zh",
-            )
-            print(transcription)
-            self.sentence += transcription
+            # print("recognizing")
+            # data = audio.get_flac_data()
+            # f = open("output.flac", "wb")
+            # f.write(data)
+            # f.close()
+            # f = open("api_key", "r")
+            # api_key = f.readline()
+            # client = OpenAI(api_key=api_key)
+            # audio_file = open("output.flac", "rb")
+            # transcription = client.audio.transcriptions.create(
+            #     model="whisper-1", 
+            #     file=audio_file,
+            #     response_format="text",
+            #     language="zh",
+            # )
+            # print(transcription)
+            try:
+                r = sr.Recognizer()
+                transcription = r.recognize_google(audio, language="zh-CN")
+                self.sentence += transcription
+            except sr.UnknownValueError:
+                print("无法识别语音")
+            except sr.RequestError as e:
+                print("请求出错：{0}".format(e))
 
             self.audio_queue.task_done()  # mark the audio processing job as completed in the queue
 
@@ -47,10 +55,10 @@ class AudioDetectionRunner():
         r = sr.Recognizer()
 
         # with sr.Microphone() as source:
-        for i in range(0, 10):  # repeatedly listen for phrases and put the resulting audio on the audio processing job queue
+        for i in range(0, 3):  # repeatedly listen for phrases and put the resulting audio on the audio processing job queue
             print(i)
-            with sr.Microphone() as source:
-            # with sr.AudioFile('chinese.flac') as source:
+            # with sr.Microphone() as source:
+            with sr.AudioFile('chinese.flac') as source:
                 self.audio_queue.put(r.listen(source))
             time.sleep(3)
         self.audio_queue.join()  # block until all current audio processing jobs are done
