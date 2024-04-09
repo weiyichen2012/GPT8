@@ -8,7 +8,7 @@ emotionList = ['开心', '悲伤', '中立']
 
 class EmotionDetectionRunner():
   def __init__(self, baseDir) -> None:
-    self.baseDir = baseDir
+    self.baseDir = baseDir + "/emotion_detection/gpt"
     return
   
   def get_emotion_text(self, text: str) -> str:
