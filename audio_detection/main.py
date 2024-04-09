@@ -57,8 +57,8 @@ class AudioDetectionRunner():
         recognize_thread.start()
         r = sr.Recognizer()
 
-        # with sr.Microphone() as source:
-        with sr.AudioFile('chinese.flac') as source:
+        with sr.Microphone() as source:
+        # with sr.AudioFile('chinese.flac') as source:
             for i in range(0, 3):  # repeatedly listen for phrases and put the resulting audio on the audio processing job queue
                 print(i)
                 # with sr.Microphone() as source:
