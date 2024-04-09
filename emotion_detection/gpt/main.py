@@ -2,6 +2,7 @@ import base64
 import requests
 import time
 import regex
+import os
 
 emotionList = ['开心', '悲伤', '中立']
 
@@ -62,6 +63,7 @@ class EmotionDetectionRunner():
       return base64.b64encode(image_file.read()).decode('utf-8')
 
   def get_emotion_image(self, image_path: str) -> str:
+    os.chdir(self.baseDir)
     f = open("api_key", "r")
     api_key = f.readline()
 
