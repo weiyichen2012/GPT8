@@ -1,0 +1,55 @@
+import speech_recognition as sr
+import os
+from openai import OpenAI
+from threading import Thread
+from queue import Queue
+
+audio_queue = Queue()
+sentence = ""
+
+os.environ['https_proxy'] = 'localhost:1080'
+
+def recognize_worker():
+    # this runs in a background thread
+    while True:
+        audio = audio_queue.get()  # retrieve the next audio processing job from the main thread
+        if audio is None: break  # stop processing if the main thread is done
+        # received audio data, now we'll recognize it using Google Speech Recognition
+        try:
+            # for testing purposes, we're just using the default API key
+            # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
+            # instead of `r.recognize_google(audio)`
+            print("recognizing")
+            data = audio.get_flac_data()
+            f = open("output.flac", "wb")
+            f.write(data)
+            f.close()
+            f = open("api_key", "r")
+            api_key = f.readline()
+            client = OpenAI(api_key=api_key)
+            audio_file = open("output.flac", "rb")
+            transcription = client.audio.transcriptions.create(
+                model="whisper-1", 
+                file=audio_file,
+                response_format="text",
+                language="zh",
+            )
+            print(transcription)
+        except:
+            print("error")
+
+        audio_queue.task_done()  # mark the audio processing job as completed in the queue
+
+recognize_thread = Thread(target=recognize_worker)
+recognize_thread.daemon = True
+recognize_thread.start()
+
+r = sr.Recognizer()
+with sr.Microphone() as source:
+    for i in range(0, 10):  # repeatedly listen for phrases and put the resulting audio on the audio processing job queue
+        print(i)
+        audio_queue.put(r.listen(source))
+
+audio_queue.join()  # block until all current audio processing jobs are done
+audio_queue.put(None)  # tell the recognize_thread to stop
+recognize_thread.join()  # wait for the recognize_thread to actually stop

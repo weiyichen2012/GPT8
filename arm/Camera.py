@@ -137,11 +137,6 @@ if __name__ == '__main__':
             if key == ord("q"):
                 break
 
-
-
-
-
-
         if img is not None:
             cv2.imshow('img', img)
             key = cv2.waitKey(1)
