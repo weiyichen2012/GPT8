@@ -18,9 +18,9 @@ class EmotionCameraRunner():
     
     def get_picture(self):
         cap = cv2.VideoCapture(0)
-        self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('Y', 'U', 'Y', 'V'))
-        self.cap.set(cv2.CAP_PROP_FPS, 30)
-        self.cap.set(cv2.CAP_PROP_SATURATION, 40)
+        cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('Y', 'U', 'Y', 'V'))
+        cap.set(cv2.CAP_PROP_FPS, 30)
+        cap.set(cv2.CAP_PROP_SATURATION, 40)
         time.sleep(1.0)
         ret, frame = cap.read()
         if ret:
