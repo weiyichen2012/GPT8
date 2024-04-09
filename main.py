@@ -1,13 +1,17 @@
 import os
-import prediction_train.train as prediction_train
+import audio_detection.main as audio_detection
+import emotion_detection.gpt.main as prediction_train
+import time
 
 if __name__ == '__main__':
   baseDir = os.path.dirname(os.path.abspath(__file__))
-  emotionList = ['happy', 'sad', 'neutral']
-  sceneList = ['study', 'gaming', 'idle']
+  audio_detection_runner = audio_detection.AudioDetectionRunner(baseDir)
+  emotion_detection_runner = prediction_train.EmotionDetectionRunner(baseDir)
 
-  prediction_runner = prediction_train.PredictionRunner(baseDir, emotionList, sceneList)
-  # prediction_runner.train()
-  prediction_runner.eval_network()
+  audio_detection_runner.start_regonize()
+  time.sleep(10)
+  sentence = audio_detection_runner.get_sentence()
+  print("Audio: ", sentence)
+  possibility = emotion_detection_runner.get_emotion_text(sentence)
 
 # print(baseDir)

@@ -10,13 +10,14 @@ os.environ['https_proxy'] = 'localhost:1080'
 
 class AudioDetectionRunner():
     def __init__(self, baseDir) -> None:
-        self.baseDir = baseDir
+        self.baseDir = baseDir + "/audio_detection"
         self.audio_queue = Queue()
         self.sentence = ""
         return
     
     def recognize_worker(self):
         # this runs in a background thread
+        os.chdir(self.baseDir)
         while True:
             audio = self.audio_queue.get()  # retrieve the next audio processing job from the main thread
             if audio is None: break  # stop processing if the main thread is done
@@ -40,6 +41,7 @@ class AudioDetectionRunner():
             try:
                 r = sr.Recognizer()
                 transcription = r.recognize_google(audio, language="zh-CN")
+                # print("trans", transcription)
                 self.sentence += transcription
             except sr.UnknownValueError:
                 print("无法识别语音")
@@ -49,12 +51,14 @@ class AudioDetectionRunner():
             self.audio_queue.task_done()  # mark the audio processing job as completed in the queue
 
     def listen_worker(self):
+        os.chdir(self.baseDir)
         recognize_thread = Thread(target=self.recognize_worker)
         recognize_thread.daemon = True
         recognize_thread.start()
         r = sr.Recognizer()
 
-        with sr.Microphone() as source:
+        # with sr.Microphone() as source:
+        with sr.AudioFile('chinese.flac') as source:
             for i in range(0, 3):  # repeatedly listen for phrases and put the resulting audio on the audio processing job queue
                 print(i)
                 # with sr.Microphone() as source:
@@ -82,7 +86,7 @@ if __name__ == "__main__":
         # time.sleep(10)
         # print(audioDetectionRunner.get_sentence())
         audioDetectionRunner.listen_thread.join()
-        print(audioDetectionRunner.get_sentence())
+        print("final output:", audioDetectionRunner.get_sentence())
     except KeyboardInterrupt:
         print("KeyboardInterrupt")
         # audioDetectionRunner.listen_thread.()
