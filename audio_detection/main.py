@@ -54,13 +54,13 @@ class AudioDetectionRunner():
         recognize_thread.start()
         r = sr.Recognizer()
 
-        # with sr.Microphone() as source:
-        for i in range(0, 3):  # repeatedly listen for phrases and put the resulting audio on the audio processing job queue
-            print(i)
-            # with sr.Microphone() as source:
-            with sr.AudioFile('chinese.flac') as source:
+        with sr.Microphone() as source:
+            for i in range(0, 3):  # repeatedly listen for phrases and put the resulting audio on the audio processing job queue
+                print(i)
+                # with sr.Microphone() as source:
+                # with sr.AudioFile('chinese.flac') as source:
                 self.audio_queue.put(r.listen(source))
-            time.sleep(3)
+                # time.sleep(3)
         self.audio_queue.join()  # block until all current audio processing jobs are done
         self.audio_queue.put(None)  # tell the recognize_thread to stop
         recognize_thread.join()  # wait for the recognize_thread to actually stop
