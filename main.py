@@ -14,7 +14,7 @@ if __name__ == '__main__':
   image_taker_runner = EmotionCameraRunner(baseDir)
   arm_control_runner = ArmControlRunner(baseDir)
 
-  actionList = arm_control_runner.readArmFile("action1.d6a")
+  actionList = arm_control_runner.readArmFile("reset.d6a")
   arm_control_runner.moveArmActionList(actionList)
   arm_control_runner.waitActionFinish()
 
