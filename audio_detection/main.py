@@ -5,8 +5,8 @@ from threading import Thread
 from queue import Queue
 import time
 
-os.environ['http_proxy'] = 'localhost:1080'
-os.environ['https_proxy'] = 'localhost:1080'
+# os.environ['http_proxy'] = 'localhost:1080'
+# os.environ['https_proxy'] = 'localhost:1080'
 
 class AudioDetectionRunner():
     def __init__(self, baseDir) -> None:

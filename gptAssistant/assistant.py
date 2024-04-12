@@ -3,8 +3,8 @@ import time
 import os
 import json
 
-os.environ['http_proxy'] = 'localhost:1080'
-os.environ['https_proxy'] = 'localhost:1080'
+# os.environ['http_proxy'] = 'localhost:1080'
+# os.environ['https_proxy'] = 'localhost:1080'
 
 class AssistantRunner():
   def __init__(self, baseDir, assistant_id="asst_Yqgv3u1O7SoJ0k4Bu2shxz6y", thread_id="thread_uvIpVGfP3HxnCGr4AgaBT9KU") -> None:
