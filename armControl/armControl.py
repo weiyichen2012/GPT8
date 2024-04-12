@@ -21,9 +21,9 @@ class ArmControlRunner():
         for i in range(0, 6):
             self.cmd["params"].append(i + 1)
             self.cmd["params"].append(servoPulse[i])
-        # r = requests.post(self.url, json = self.cmd).json()
+        r = requests.post(self.url, json = self.cmd).json()
         # print(r)
-        print(self.cmd)
+        # print(self.cmd)
 
     def moveArmAction(self, action):
         self.moveArm(action['time'], action['servoPulse'])
