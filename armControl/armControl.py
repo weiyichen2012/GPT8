@@ -21,9 +21,9 @@ class ArmControlRunner():
         for i in range(0, 6):
             self.cmd["params"].append(i + 1)
             self.cmd["params"].append(servoPulse[i])
+        print(self.cmd)
         r = requests.post(self.url, json = self.cmd).json()
         print(r)
-        print(self.cmd)
 
     def moveArmAction(self, action):
         self.moveArm(action['time'], action['servoPulse'])
@@ -34,9 +34,10 @@ class ArmControlRunner():
             time.sleep(action['time'] / 1000.0)
 
     def moveArmActionList(self, actionList):
-        self.actionThread = Thread(target = self.actionRunner, args = (actionList,))
-        print("thread start")
-        self.actionThread.start()
+        self.actionRunner(actionList)
+        # self.actionThread = Thread(target = self.actionRunner, args = (actionList,))
+        # print("thread start")
+        # self.actionThread.start()
     
     def waitActionFinish(self):
         self.actionThread.join()

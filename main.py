@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
   actionList = arm_control_runner.readArmFile("reset.d6a")
   arm_control_runner.moveArmActionList(actionList)
-  arm_control_runner.waitActionFinish()
+  # arm_control_runner.waitActionFinish()
 
   # audio_detection_runner.start_regonize()
   # time.sleep(10)
