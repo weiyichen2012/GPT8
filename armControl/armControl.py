@@ -7,7 +7,8 @@ import os
 
 class ArmControlRunner():
     def __init__(self, baseDir, ifDebug = True):
-        self.baseDir = baseDir + '/armControl/'
+        self.baseDir = baseDir
+        self.selfBaseDir = baseDir + '/armControl/'
         self.ifDebug = ifDebug
         self.url = "http://127.0.0.1:9030/jsonrpc"
         self.cmd = {
@@ -49,7 +50,7 @@ class ArmControlRunner():
             print("thread join")
     
     def readArmFile(self, fileName):
-        path = self.baseDir + fileName
+        path = self.selfBaseDir + fileName
         actionList = []
         rbt = QSqlDatabase.addDatabase("QSQLITE")
         if os.path.exists(path):

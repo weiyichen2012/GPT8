@@ -7,8 +7,10 @@ import os
 emotionList = ['开心', '悲伤', '中立']
 
 class EmotionDetectionRunner():
-  def __init__(self, baseDir) -> None:
-    self.baseDir = baseDir + "/emotion_detection/gpt"
+  def __init__(self, baseDir, ifDebug=True) -> None:
+    self.baseDir = baseDir
+    self.selfBaseDir = baseDir + "/emotion_detection/gpt"
+    self.ifDebug = ifDebug
     return
   
   def get_emotion_text(self, text: str) -> str:
@@ -24,7 +26,9 @@ class EmotionDetectionRunner():
         sentence += emotionList[i] + ", "
     sentence = "如果你听到有人说\"" + text + "\", 他是哪种情绪?" + sentence
     sentence += " 用数字与%表达没种情绪的可能性，总和应为100%。只需回答情绪+数字。"
-    print(sentence)
+
+    if self.ifDebug:
+      print(sentence)
 
     headers = {
       "Content-Type": "application/json",
@@ -49,15 +53,20 @@ class EmotionDetectionRunner():
 
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload, proxies={"https": "http://127.0.0.1:1080"})
     content = response.json()["choices"][0]['message']['content']
-    print(content)
+    if self.ifDebug:
+      print(content)
+    
+    possibilityList = []
     for i in range(0, len(emotionList)):
       possibility = regex.regex.findall(emotionList[i] + r".*?([\d]+)%", content)
       if possibility:
         possibility = possibility[0]
       else:
         possibility = 0.0
-      print(emotionList[i], possibility)
-    return possibility
+      possibilityList.append(possibility)
+      if self.ifDebug:
+        print(emotionList[i], possibility)
+    return possibilityList
 
   def encode_image(self, image_path):
     with open(image_path, "rb") as image_file:
@@ -83,7 +92,8 @@ class EmotionDetectionRunner():
         sentence += emotionList[i] + ", "
     sentence = "图中人的情绪是以下哪种？" + sentence
     sentence += " 用数字与%表达没种情绪的可能性，总和应为100%。只需回答情绪+数字。"
-    print(sentence)
+    if self.ifDebug:
+      print(sentence)
 
     payload = {
       "model": "gpt-4-vision-preview",
@@ -109,15 +119,20 @@ class EmotionDetectionRunner():
 
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload, proxies={"https": "http://127.0.0.1:1080"})
     content = response.json()["choices"][0]['message']['content']
-    print(content)
+    if self.ifDebug:
+      print(content)
+
+    possibilityList = []
     for i in range(0, len(emotionList)):
       possibility = regex.regex.findall(emotionList[i] + r".*?([\d]+)%", content)
       if possibility:
         possibility = possibility[0]
       else:
         possibility = 0.0
-      print(emotionList[i], possibility)
-    return response
+      possibilityList.append(possibility)
+      if self.ifDebug:
+        print(emotionList[i], possibility)
+    return possibilityList
 
 if __name__ == "__main__":
   emotionDetectionRunner = EmotionDetectionRunner(".")
