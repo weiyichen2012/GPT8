@@ -12,10 +12,11 @@ if __name__ == '__main__':
   audio_detection_runner = AudioDetectionRunner(baseDir)
   emotion_detection_runner = EmotionDetectionRunner(baseDir)
   image_taker_runner = EmotionCameraRunner(baseDir)
-  arm_control_runner = ArmControlRunner(baseDir)
+  arm_control_runner = ArmControlRunner(baseDir, ifDebug=True)
 
   actionList = arm_control_runner.readArmFile("reset.d6a")
-  arm_control_runner.moveArm(1000, [500, 500, 388, 871, 150, 500])
+  arm_control_runner.moveArmActionList(actionList)
+  # arm_control_runner.moveArm(1000, [500, 500, 388, 871, 150, 500])
   # arm_control_runner.moveArmActionList(actionList)
   # arm_control_runner.waitActionFinish()
 
