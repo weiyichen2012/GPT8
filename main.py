@@ -13,8 +13,15 @@ def testHandRecognition(image_taker_runner):
     image_taker_runner.recognize_hand()
 
 def handFollow():
-  result = image_taker_runner.recognize_hand()
-  print(result)
+  ifTwoHands, mid_x, ifGesture1 = image_taker_runner.recognize_hand()
+  if ifTwoHands:
+    currPos = arm_control_runner.getArmPos()
+    if mid_x < 0.4:
+      currPos[0] -= 10
+    elif mid_x > 0.6:
+      currPos[0] += 10
+    arm_control_runner.moveArm(1000, currPos)
+  time.sleep(1500)
 
 
 if __name__ == '__main__':

@@ -5,6 +5,10 @@ import time
 from threading import Thread
 import os
 
+def postRequest(url, cmd):
+    r = requests.post(url, json = cmd).json()
+    return r
+
 class ArmControlRunner():
     def __init__(self, baseDir, ifDebug = True):
         self.baseDir = baseDir
@@ -17,6 +21,23 @@ class ArmControlRunner():
             "jsonrpc": "2.0",
             "id": 0,
             }
+        initPos = [500, 500, 388, 871, 150, 500]
+        self.currentPos = initPos
+        self.moveArm(1000, initPos)
+
+    def getArmPos(self):
+        return self.currentPos
+
+    def moveSingleServo(self, time, servoId, servoPulse):
+        self.cmd["method"] = "SetBusServoPulse"
+        self.cmd["params"] = [time, 1]
+        self.cmd["params"].append(servoId)
+        self.cmd["params"].append(servoPulse)
+        self.currentPos[servoId - 1] = servoPulse
+        r = postRequest(self.url, json = self.cmd).json()
+        if self.ifDebug:
+            print(self.cmd)
+            print(r)
 
     def moveArm(self, time, servoPulse):
         self.cmd["method"] = "SetBusServoPulse"
@@ -24,7 +45,8 @@ class ArmControlRunner():
         for i in range(0, 6):
             self.cmd["params"].append(i + 1)
             self.cmd["params"].append(servoPulse[i])
-        r = requests.post(self.url, json = self.cmd).json()
+            self.currentPos[i] = servoPulse[i]
+        r = postRequest(self.url, json = self.cmd).json()
         if self.ifDebug:
             print(self.cmd)
             print(r)
