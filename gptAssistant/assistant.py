@@ -3,9 +3,6 @@ import time
 import os
 import json
 
-# os.environ['http_proxy'] = 'localhost:1080'
-# os.environ['https_proxy'] = 'localhost:1080'
-
 class AssistantRunner():
   def __init__(self, baseDir, assistant_id="asst_Yqgv3u1O7SoJ0k4Bu2shxz6y", thread_id="thread_uvIpVGfP3HxnCGr4AgaBT9KU") -> None:
     os.chdir(baseDir)
@@ -27,6 +24,10 @@ class AssistantRunner():
     content=msg
     )
 
+
+    os.environ['http_proxy'] = 'localhost:1080'
+    os.environ['https_proxy'] = 'localhost:1080'
+
     run = self.client.beta.threads.runs.create(
       thread_id=self.thread_id,
       assistant_id=self.assistant_id,
@@ -43,9 +44,17 @@ class AssistantRunner():
         thread_id=self.thread_id
       )
       print(messages.data[0].content[0].text.value)
+
+      os.environ.unsetenv('http_proxy');
+      os.environ.unsetenv('https_proxy');
+
       return messages.data[0].content[0].text.value
     else:
       print("error")
+
+      os.environ.unsetenv('http_proxy');
+      os.environ.unsetenv('https_proxy');
+      
       return ""
 
 if __name__ == "__main__":

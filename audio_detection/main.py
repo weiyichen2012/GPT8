@@ -5,9 +5,6 @@ from threading import Thread
 from queue import Queue
 import time
 
-os.environ['http_proxy'] = 'localhost:1080'
-os.environ['https_proxy'] = 'localhost:1080'
-
 class AudioDetectionRunner():
     def __init__(self, baseDir, ifDebug=True) -> None:
         self.baseDir = baseDir
@@ -42,6 +39,8 @@ class AudioDetectionRunner():
             #     language="zh",
             # )
             # print(transcription)
+            os.environ['http_proxy'] = 'localhost:1080'
+            os.environ['https_proxy'] = 'localhost:1080'
             try:
                 r = sr.Recognizer()
                 transcription = r.recognize_google(audio, language="zh-CN")
@@ -52,6 +51,9 @@ class AudioDetectionRunner():
                 print("无法识别语音")
             except sr.RequestError as e:
                 print("请求出错：{0}".format(e))
+
+            os.environ.unsetenv('http_proxy');
+            os.environ.unsetenv('https_proxy');
 
             self.audio_queue.task_done()  # mark the audio processing job as completed in the queue
 

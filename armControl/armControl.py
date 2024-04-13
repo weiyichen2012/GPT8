@@ -5,9 +5,9 @@ import time
 from threading import Thread
 import os
 
-def postRequest(url, json):
+def postRequest(url, json, proxies):
     if True:
-        r = requests.post(url, json = json).json()
+        r = requests.post(url, json = json, proxies=proxies).json()
         return r
     else:
         print("Warning, postRequest is disabled.")
@@ -16,6 +16,10 @@ def postRequest(url, json):
 class ArmControlRunner():
     def __init__(self, baseDir, ifDebug = True):
         self.baseDir = baseDir
+        self.proxies = {
+            "http": None,
+            "https": None,
+        }
         self.selfBaseDir = baseDir + '/armControl/'
         self.ifDebug = ifDebug
         self.url = "http://127.0.0.1:9030/jsonrpc"
@@ -38,7 +42,7 @@ class ArmControlRunner():
         self.cmd["params"].append(servoId)
         self.cmd["params"].append(servoPulse)
         self.currentPos[servoId - 1] = servoPulse
-        r = postRequest(self.url, json = self.cmd)
+        r = postRequest(self.url, json = self.cmd, proxies = self.proxies)
         if self.ifDebug:
             print(self.cmd)
             print(r)
@@ -50,7 +54,7 @@ class ArmControlRunner():
             self.cmd["params"].append(i + 1)
             self.cmd["params"].append(servoPulse[i])
             self.currentPos[i] = servoPulse[i]
-        r = postRequest(self.url, json = self.cmd)
+        r = postRequest(self.url, json = self.cmd, proxies = self.proxies)
         if self.ifDebug:
             print(self.cmd)
             print(r)
