@@ -17,11 +17,11 @@ def handFollow():
   if ifTwoHands:
     currPos = arm_control_runner.getArmPos()
     if mid_x < 0.4:
-      currPos[0] -= 10
+      currPos[5] -= 1
     elif mid_x > 0.6:
-      currPos[0] += 10
-    arm_control_runner.moveArm(1000, currPos)
-  time.sleep(1500)
+      currPos[5] += 1
+    arm_control_runner.moveArm(50, currPos)
+  time.sleep(0.06)
 
 
 if __name__ == '__main__':
@@ -33,8 +33,8 @@ if __name__ == '__main__':
   arm_control_runner = ArmControlRunner(baseDir, ifDebug=True)
   # hand_recognition_runner = HandRecognitionRunner(baseDir, ifDebug=True)
 
-  while True:
-    handFollow()
+  # while True:
+  #   handFollow()
 
   # testHandRecognition(image_taker_runner)
 
@@ -44,16 +44,15 @@ if __name__ == '__main__':
   # # arm_control_runner.moveArmActionList(actionList)
   # # arm_control_runner.waitActionFinish()
 
-  # audio_detection_runner.start_regonize()
-  # time.sleep(10)
-  # image_taker_runner.get_picture()
-  # sentence = audio_detection_runner.get_sentence()
-  # print("Audio: ", sentence)
-  # possibility_text = emotion_detection_runner.get_emotion_text(sentence)
-  # possibility_image = emotion_detection_runner.get_emotion_image("picture.jpg")
+  audio_detection_runner.start_regonize()
+  time.sleep(10)
+  sentence = audio_detection_runner.get_sentence()
+  print("Audio: ", sentence)
+  possibility_text = emotion_detection_runner.get_emotion_text(sentence)
+  possibility_image = emotion_detection_runner.get_emotion_image("picture.jpg")
 
-  # print("detection finished\n", possibility_text, possibility_image)
-  # for i in range(0, len(emotionList)):
-  #   print(emotionList[i], possibility_text[i], possibility_image[i])
+  print("detection finished\n", possibility_text, possibility_image)
+  for i in range(0, len(emotionList)):
+    print(emotionList[i], possibility_text[i], possibility_image[i])
 
 # print(baseDir)

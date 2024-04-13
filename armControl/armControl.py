@@ -5,9 +5,13 @@ import time
 from threading import Thread
 import os
 
-def postRequest(url, cmd):
-    r = requests.post(url, json = cmd).json()
-    return r
+def postRequest(url, json):
+    if True:
+        r = requests.post(url, json = json).json()
+        return r
+    else:
+        print("Warning, postRequest is disabled.")
+        return []
 
 class ArmControlRunner():
     def __init__(self, baseDir, ifDebug = True):
@@ -34,7 +38,7 @@ class ArmControlRunner():
         self.cmd["params"].append(servoId)
         self.cmd["params"].append(servoPulse)
         self.currentPos[servoId - 1] = servoPulse
-        r = postRequest(self.url, json = self.cmd).json()
+        r = postRequest(self.url, json = self.cmd)
         if self.ifDebug:
             print(self.cmd)
             print(r)
@@ -46,7 +50,7 @@ class ArmControlRunner():
             self.cmd["params"].append(i + 1)
             self.cmd["params"].append(servoPulse[i])
             self.currentPos[i] = servoPulse[i]
-        r = postRequest(self.url, json = self.cmd).json()
+        r = postRequest(self.url, json = self.cmd)
         if self.ifDebug:
             print(self.cmd)
             print(r)
