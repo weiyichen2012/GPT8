@@ -6,7 +6,7 @@ from threading import Thread
 import os
 
 def postRequest(url, json, proxies):
-    if True:
+    if False:
         r = requests.post(url, json = json, proxies=proxies).json()
         return r
     else:

@@ -54,7 +54,8 @@ if __name__ == '__main__':
 
   time.sleep(20)
   emotion = getEmotion()
-  print(emotion)
+  # description  = emotion_detection_runner.get_emotion_description("picture.jpg")
+  # print(description)
   # if emotion == '悲伤':
   #   handFollow()
   # handFollow()
