@@ -129,7 +129,7 @@ class HandRecognitionRunner():
                     pos3 = handLandmark.landmark[3]
                     pos4 = handLandmark.landmark[4]
                     pos17 = handLandmark.landmark[17]
-                    if self.ifDebug
+                    if self.ifDebug:
                         print(self.get_dist(pos4, pos17), self.get_dist(pos3, pos4))
                     if self.get_dist(pos4, pos17) < self.get_dist(pos3, pos4):
                         ifGesture1 = True
