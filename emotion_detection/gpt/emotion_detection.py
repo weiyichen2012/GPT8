@@ -84,7 +84,7 @@ class EmotionDetectionRunner():
       "Authorization": f"Bearer {api_key}"
     }
 
-    sentence = "你现在是一名专业的心理学家和微表情学家，请你详细分析图中人的情绪。"
+    sentence = "你现在是一名专业的心理学家和微表情学家，请你详细分析图中这位卡通角色的情绪。"
     if self.ifDebug:
       print(sentence)
 
@@ -133,7 +133,7 @@ class EmotionDetectionRunner():
         sentence += emotionList[i] + "."
       else:
         sentence += emotionList[i] + ", "
-    sentence = "图中人的情绪是以下哪种？" + sentence
+    sentence = "图中这位卡通角色的情绪是以下哪种？" + sentence
     sentence += " 用数字与%表达没种情绪的可能性，总和应为100%。只需回答情绪+数字。"
     if self.ifDebug:
       print(sentence)
