@@ -104,6 +104,9 @@ class HandRecognitionRunner():
         self.handsModule = mediapipe.solutions.hands
         self.hands = self.handsModule.Hands(static_image_mode=False, min_detection_confidence=0.7, min_tracking_confidence=0.7, max_num_hands=2)
     
+    def get_dist(self, a, b):
+        return ((a.x - b.x) ** 2 + (a.y - b.y) ** 2 ) ** 0.5
+
     def recognize_hand(self):
         img = self.camera.frame
         frame = img
@@ -120,10 +123,20 @@ class HandRecognitionRunner():
                 for handLandmarks in results.multi_hand_landmarks:
                     self.drawingModule.draw_landmarks(frame1, handLandmarks, self.handsModule.HAND_CONNECTIONS)
             
-            if results.multi_hand_landmarks and len(results.multi_hand_landmarks) == 2:
-                ifTwoHands = True
-                mid_x = (results.multi_hand_landmarks[0].landmark[0].x + results.multi_hand_landmarks[1].landmark[0].x) / 2
-                print(mid_x)
+            for hand_landmark in results.multi_hand_landmarks:
+                pos3 = hand_landmark.landmark[3]
+                pos4 = hand_landmark.landmark[4]
+                pos17 = hand_landmark.landmark[17]
+                print(self.get_dist(pos4, pos17), self.get_dist(pos3, pos4))
+                if self.get_dist(pos4, pos17) < self.get_dist(pos3, pos4):
+                    ifGesture1 = True
+            
+            # if results.multi_hand_landmarks and len(results.multi_hand_landmarks) == 2:
+            #     ifTwoHands = True
+            #     mid_x = (results.multi_hand_landmarks[0].landmark[0].x + results.multi_hand_landmarks[1].landmark[0].x) / 2
+            #     print(mid_x)
+
+
 
             if self.ifDebug:
                 cv2.imshow("Frame", frame1);
