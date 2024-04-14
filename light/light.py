@@ -6,7 +6,7 @@ class LightRunner():
     def __init__(self, baseDir, ifDebug=True):
         self.baseDir = baseDir
         self.ifDebug = ifDebug
-        self.bulb = Bulb("192.168.10.83")
+        self.bulb = Bulb("192.168.0.126")
 
     def startFlow(self, transitions):
         flow = Flow(

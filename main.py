@@ -3,8 +3,10 @@ from audio_detection.main import AudioDetectionRunner
 from emotion_detection.gpt.emotion_detection import EmotionDetectionRunner
 from image_taker.image import ImageTakerRunner
 from armControl.armControl import ArmControlRunner
+from light.light import LightRunner
 # from handRecognition.hand import HandRecognitionRunner
 import time
+from yeelight import *
 
 emotionList = ['开心', '悲伤', '中立']
 
@@ -52,10 +54,20 @@ if __name__ == '__main__':
   arm_control_runner = ArmControlRunner(baseDir, ifDebug=True)
   audio_detection_runner.start_regonize()
 
-  time.sleep(5)
-  # emotion = getEmotion()
+  time.sleep(13)
+  emotion = getEmotion()
   description  = emotion_detection_runner.get_emotion_description("picture.jpg")
   print(description)
+
+  lightRunner = LightRunner(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
+  transitions = [
+      RGBTransition(0, 0, 128, duration=3000, brightness=10),  # 深蓝色，低亮度，模拟天空刚开始亮起
+      RGBTransition(255, 140, 0, duration=3000, brightness=60),  # 橙红色，中等亮度，模拟太阳刚刚升起
+      RGBTransition(255, 215, 0, duration=3000, brightness=100),  # 金黄色，高亮度，模拟太阳完全升起
+  ]
+  if emotion == '悲伤':
+    lightRunner.startFlow(transitions)
+
   # print(description)
   # if emotion == '悲伤':
   #   handFollow()
