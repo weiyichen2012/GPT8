@@ -117,19 +117,22 @@ class HandRecognitionRunner():
 
         if frame is not None:
             frame1 = cv2.resize(frame, (640, 480))
-            results = self.hands.process(cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB))
+            try:
+                results = self.hands.process(cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB))
+            except Exception as e:
+                print('hand recognition error:', e)
+                return ifTwoHands, mid_x, ifGesture1
 
             if results.multi_hand_landmarks != None:
-                for handLandmarks in results.multi_hand_landmarks:
-                    self.drawingModule.draw_landmarks(frame1, handLandmarks, self.handsModule.HAND_CONNECTIONS)
-            
-            for hand_landmark in results.multi_hand_landmarks:
-                pos3 = hand_landmark.landmark[3]
-                pos4 = hand_landmark.landmark[4]
-                pos17 = hand_landmark.landmark[17]
-                print(self.get_dist(pos4, pos17), self.get_dist(pos3, pos4))
-                if self.get_dist(pos4, pos17) < self.get_dist(pos3, pos4):
-                    ifGesture1 = True
+                for handLandmark in results.multi_hand_landmarks:
+                    self.drawingModule.draw_landmarks(frame1, handLandmark, self.handsModule.HAND_CONNECTIONS)            
+                    pos3 = handLandmark.landmark[3]
+                    pos4 = handLandmark.landmark[4]
+                    pos17 = handLandmark.landmark[17]
+                    if self.ifDebug
+                        print(self.get_dist(pos4, pos17), self.get_dist(pos3, pos4))
+                    if self.get_dist(pos4, pos17) < self.get_dist(pos3, pos4):
+                        ifGesture1 = True
             
             # if results.multi_hand_landmarks and len(results.multi_hand_landmarks) == 2:
             #     ifTwoHands = True
