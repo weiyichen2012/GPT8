@@ -52,9 +52,10 @@ if __name__ == '__main__':
   arm_control_runner = ArmControlRunner(baseDir, ifDebug=True)
   audio_detection_runner.start_regonize()
 
-  time.sleep(10)
-  emotion = getEmotion()
-  # description  = emotion_detection_runner.get_emotion_description("picture.jpg")
+  time.sleep(5)
+  # emotion = getEmotion()
+  description  = emotion_detection_runner.get_emotion_description("picture.jpg")
+  print(description)
   # print(description)
   # if emotion == '悲伤':
   #   handFollow()
