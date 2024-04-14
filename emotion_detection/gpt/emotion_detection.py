@@ -84,7 +84,7 @@ class EmotionDetectionRunner():
       "Authorization": f"Bearer {api_key}"
     }
 
-    sentence = "你现在是一名专业的心理学家和微表情学家，请你先给出图中人情绪积极或消极的判断，再详细分析途中男生情绪。"
+    sentence = "你现在是一名专业的心理学家和微表情学家，请你详细分析图中人的情绪。"
     if self.ifDebug:
       print(sentence)
 
