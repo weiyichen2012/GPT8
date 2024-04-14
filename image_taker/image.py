@@ -156,7 +156,7 @@ class ImageTakerRunner():
 
 
 if __name__ == '__main__':
-    imageTakerRunner = ImageTakerRunner(os.path.abspath(os.path.join(os.getcwd(), os.pardir)), ifDebug=False)
+    imageTakerRunner = ImageTakerRunner(os.path.abspath(os.path.join(os.getcwd(), os.pardir)), ifDebug=True)
     while True:
         print(imageTakerRunner.recognize_hand())
     # my_camera = Camera()
