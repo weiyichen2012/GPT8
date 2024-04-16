@@ -9,6 +9,7 @@ from servo.servo import ServoRunner
 import time
 from yeelight import *
 
+cheatEmotionDetection = True #True 代表作弊，自动悲伤
 cheatTwoHands = False #False 代表作弊，不识别
 
 emotionList = ['开心', '悲伤', '中立']
@@ -54,7 +55,7 @@ if __name__ == '__main__':
     time.sleep(20.0)
     emotion = getEmotion()
     print("get emotion: ", emotion)
-    if emotion == '悲伤':
+    if emotion == '悲伤' or cheatTwoHands:
       print('detect sad')
       light_runner.startFlowByFile("effect1.json")
       arm_control_runner.moveArmFile('1 fast forward.d6a')
