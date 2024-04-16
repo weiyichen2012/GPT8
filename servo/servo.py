@@ -15,6 +15,7 @@ class ServoRunner():
   
   def smoothMoveWorker(self, degreeStart, degreeEnd, duration):
     durationMs = int(duration * 1000)
+    print('durationMs': durationMs, int(durationMs / 100))
     for i in range(0, int(durationMs / 100)):
       print(i, degreeStart + (degreeEnd - degreeStart) * i / (durationMs / 100))
       self.move(degreeStart + (degreeEnd - degreeStart) * i / (durationMs / 100))
@@ -34,6 +35,7 @@ class ServoRunner():
 
 if __name__ == '__main__':
   servoRunner = ServoRunner(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
+  time.sleep(1)
   # servoRunner.move(0)
   # time.sleep(1)
   # servoRunner.move(180)
