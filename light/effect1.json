@@ -1,16 +1,16 @@
-{"transitions":[
-  {"RGBTRansition":[135,206,235,"duration=2000","brightness=10"]},
-  {"RGBTRansition":[135,206,235,"duration=2000","brightness=80"]},
-  {"SleepTransition":["duration=1000"]},
-  {"RGBTRansition":[0,105,148,"duration=1000","brightness=60"]},
-  {"RGBTRansition":[0,105,148,"duration=1000","brightness=10"]},
-  {"SleepTransition":["duration=1000"]},
-  {"RGBTRansition":[135,206,235,"duration=2000","brightness=30"]},
-  {"RGBTRansition":[135,206,235,"duration=2000","brightness=80"]},
-  {"SleepTransition":["duration=2000"]}],
-  "flow":{
-  "count":3,
-  "action": "Flow.actions.recover",
-  "transitions": "Listed above"
-   }
+{
+  "transitions": [
+    {"RGBTransition": [135, 206, 235, "duration=3000", "brightness=30"]},
+    {"RGBTransition": [175, 238, 238, "duration=3000", "brightness=40"]},
+    {"SleepTransition": ["duration=500"]},
+    {"RGBTransition": [135, 206, 250, "duration=3000", "brightness=30"]},
+    {"RGBTransition": [0, 191, 255, "duration=3000", "brightness=40"]},
+    {"SleepTransition": ["duration=500"]},
+    {"RGBTransition": [135, 206, 235, "duration=3000", "brightness=30"]}
+  ],
+  "flow": {
+    "count": 0,
+    "action": "Flow.actions.recover",
+    "transitions": "Listed above"
+  }
 }

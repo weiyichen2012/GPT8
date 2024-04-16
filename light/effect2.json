@@ -1,0 +1,11 @@
+{"transitions": [
+  {"HSVTransition":[0, 0, "duration=50", "brightness=30"]},
+  {"HSVTransition":[0, 0, "duration=50", "brightness=1"]},
+  {"TemperatureTransition": ["temperature=3500", "duration=1000", "brightness=30"]}
+    ],
+  "flow": {
+  "count": 2,
+  "action": "Flow.actions.recover",
+  "transitions": "Listed above"
+  }
+}

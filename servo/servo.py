@@ -42,6 +42,10 @@ class ServoRunner():
       # self.move(degreeList[i])
       time.sleep(durationList[i])
   
+  def moveByListAsync(self, degreeList, durationList):
+    self.thread = threading.Thread(target=self.moveByListRunner, args=(degreeList, durationList))
+    self.thread.start()
+
   def moveByFile(self, fileName, durationList):
     os.chdir(self.selfBaseDir)
     f = open(fileName, 'r')
