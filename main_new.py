@@ -13,16 +13,12 @@ import random
 #以下两个cheat为两个开关，通过布尔值真假控制程序的自主程度
 cheatEmotionDetection = True #True 代表在最开始的情绪识别就作弊，无论什么情绪都识别为悲伤
 cheatTwoHands = False #False 代表在手势识别阶段作弊，无论什么手势都执行语音触发的四种效果
-cheatInputWords = False
+cheatInputWords = True
 
 emotionList = ['开心', '悲伤', '中立']
 ifTest = False
 
 def getEmotion(ifDebug=True):
-  if cheatInputWords:
-    sentence = "焦虑"
-  else:
-    sentence = audio_detection_runner.get_sentence()
   possibility_text = emotion_detection_runner.get_emotion_text("我很伤心")
   possibility_image = emotion_detection_runner.get_emotion_image("picture.jpg")
 
@@ -35,11 +31,10 @@ def getEmotion(ifDebug=True):
       maxPossibility = possibility_image[i] + possibility_text[i]
   
   if ifDebug:
-    print("Audio: ", sentence)
     print("detection finished\n", possibility_text, possibility_image)
     print("Emotion: ", maxEmotion, maxPossibility)
   
-  return maxEmotion, sentence
+  return maxEmotion
 
 if __name__ == '__main__':
   baseDir = '/home/pi/GPT8/'
@@ -59,7 +54,7 @@ if __name__ == '__main__':
   while True:
     print("wait for microphone, 20 seconds")
     time.sleep(20.0)
-    emotion, sentence = getEmotion()
+    emotion = getEmotion()
     print("get emotion: ", emotion)
     if emotion == '悲伤' or cheatEmotionDetection:
       print('detect sad')
@@ -91,9 +86,9 @@ if __name__ == '__main__':
 
 
         print("wait for microphone for 焦虑压力, 20 seconds")#意思是等待是否有语音触发的关键词，这里是开始作弊了，其实本来应该开始调用gpt assistant了
-        # time.sleep(20.0)
-        # sentence = audio_detection_runner.get_sentence()
-        # print("get sentence: ", sentence)
+        time.sleep(20.0)
+        sentence = audio_detection_runner.get_sentence()
+        print("get sentence: ", sentence)
 
         ifRecognizeTwoHands = False
         for i in range(0, 300):
@@ -156,6 +151,7 @@ if __name__ == '__main__':
         # arm_control_runner.moveArmFile('1 fast forward.d6a')
       else:
         print("not recognize four")
+        # 复位机械臂
         light_runner.startFlowByFile("effect2.json")
         continue
 
