@@ -32,7 +32,7 @@ def getEmotion(ifDebug=True):
   return maxEmotion
 
 if __name__ == '__main__':
-  baseDir = os.path.dirname(os.path.abspath(__file__))
+  baseDir = os.path.dirname(os.path.abspath(__file__)+"/")
   audio_detection_runner = AudioDetectionRunner(baseDir, ifDebug=True)
   emotion_detection_runner = EmotionDetectionRunner(baseDir, ifDebug=True)
   image_taker_runner = ImageTakerRunner(baseDir, ifDebug=True)
