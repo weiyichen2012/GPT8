@@ -35,8 +35,7 @@ class ServoRunner():
     self.pwm.ChangeDutyCycle(2.5 + degree / 180 * 10)
 
   def moveByList(self, degreeList, durationList):
-    for i in range(0, degreeList):
-      print(degreeList)
+    for i in range(0, len(degreeList)):
       self.move(degreeList[i])
       time.sleep(durationList[i])
   
@@ -44,7 +43,6 @@ class ServoRunner():
     os.chdir(self.selfBaseDir)
     f = open(fileName, 'r')
     obj = json.loads(f.read())
-    print(obj)
     self.moveByList(obj['list'], durationList)
 
 
