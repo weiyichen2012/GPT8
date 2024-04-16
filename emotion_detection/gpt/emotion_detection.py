@@ -180,7 +180,7 @@ class EmotionDetectionRunner():
     return possibilityList
 
 if __name__ == "__main__":
-  emotionDetectionRunner = EmotionDetectionRunner()
+  emotionDetectionRunner = EmotionDetectionRunner("../../")
   t1 = time.time()
   # emotionDetectionRunner.get_emotion_text("I'm so tired of studying")
   emotionDetectionRunner.get_emotion_text("我很伤心")
