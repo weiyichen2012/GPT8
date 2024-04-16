@@ -38,7 +38,7 @@ class ServoRunner():
     for i in range(0, len(degreeList)):
       if self.ifDebug:
         print("Move to: ", degreeList[i])
-      self.smoothMoveTo(degreeList[i], durationList[i])
+      self.move(degreeList[i])
       time.sleep(durationList[i])
   
   def moveByFile(self, fileName, durationList):
