@@ -35,13 +35,13 @@ if __name__ == '__main__':
   baseDir = '/home/pi/GPT8/'
   audio_detection_runner = AudioDetectionRunner(baseDir, ifDebug=True)
   emotion_detection_runner = EmotionDetectionRunner(baseDir, ifDebug=True)
-  image_taker_runner = ImageTakerRunner(baseDir, ifDebug=True)
+  image_taker_runner = ImageTakerRunner(baseDir, ifDebug=False)
   arm_control_runner = ArmControlRunner(baseDir, ifDebug=True)
   servo_runner = ServoRunner(baseDir, ifDebug=True)
   light_runner = LightRunner(baseDir, ifDebug=True)
 
   audio_detection_runner.start_regonize()
-  possibility_text = emotion_detection_runner.get_emotion_text("我很伤心")
+  # possibility_text = emotion_detection_runner.get_emotion_text("我很伤心")
 
   while True:
     print("wait for microphone, 20 seconds")
