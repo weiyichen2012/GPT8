@@ -17,10 +17,10 @@ class ServoRunner():
     self.move(90)
   
   def smoothMoveWorker(self, degreeStart, degreeEnd, duration):
-    for i in range(0, 10):
-      print(i, degreeStart + (degreeEnd - degreeStart) * i / 10)
-      self.move(degreeStart + (degreeEnd - degreeStart) * i / 10)
-      time.sleep(duration / 10)
+    for i in range(0, 20):
+      print(i, degreeStart + (degreeEnd - degreeStart) * i / 20)
+      self.move(degreeStart + (degreeEnd - degreeStart) * i / 20)
+      time.sleep(duration / 20)
 
   def smoothMoveTo(self, degree, duration):
     print(degree, duration)
@@ -38,7 +38,8 @@ class ServoRunner():
     for i in range(0, len(degreeList)):
       if self.ifDebug:
         print("Move to: ", degreeList[i])
-      self.move(degreeList[i])
+      self.smoothMoveTo(degreeList[i], durationList[i])
+      # self.move(degreeList[i])
       time.sleep(durationList[i])
   
   def moveByFile(self, fileName, durationList):
