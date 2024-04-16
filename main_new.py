@@ -10,7 +10,7 @@ import time
 from yeelight import *
 
 emotionList = ['开心', '悲伤', '中立']
-ifTest = False
+ifTest = True
 
 def getEmotion(ifDebug=True):
   if ifTest:
@@ -52,7 +52,10 @@ if __name__ == '__main__':
 
   while True:
     print("wait for microphone, 20 seconds")
-    time.sleep(20.0)
+    if ifTest:
+      time.sleep(1.0)
+    else:
+      time.sleep(20.0)
     emotion = getEmotion()
     print("get emotion: ", emotion)
     if emotion == '悲伤':
@@ -99,10 +102,10 @@ if __name__ == '__main__':
           for duration in durationList:
             durationSum += duration
           time.sleep(durationSum)
-          # arm_control_runner.moveArmFile('1 fast forward.d6a')
+          arm_control_runner.moveArmFile('1 fast forward.d6a')
         else:
           ...
-        # arm_control_runner.moveArmFile('1 fast forward.d6a')
+        arm_control_runner.moveArmFile('1 fast forward.d6a')
       else:
         print("not recognize four")
         light_runner.startFlowByFile("effect2.json")
