@@ -29,8 +29,8 @@ class ArmControlRunner():
             "jsonrpc": "2.0",
             "id": 0,
             }
-        # initPos = [500, 500, 388, 871, 150, 500]
-        # self.currentPos = initPos
+        initPos = [500, 500, 388, 871, 150, 500]
+        self.currentPos = initPos
         # self.moveArm(1000, initPos)
 
     def getArmPos(self):
