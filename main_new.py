@@ -40,8 +40,8 @@ if __name__ == '__main__':
   servo_runner = ServoRunner(baseDir, ifDebug=True)
   light_runner = LightRunner(baseDir, ifDebug=True)
 
-  # light_runner.startFlowByFile("effect1.json")
   durationList = light_runner.getLightJSONDurationByFile('effect1.json')
+  light_runner.startFlowByFile("effect1.json")
   # arm_control_runner.moveArmByFile('arm1.json', durationList)
   servo_runner.moveByFile('servo1.json', durationList)
   # servo_runner;
