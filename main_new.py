@@ -70,10 +70,10 @@ if __name__ == '__main__':
         print("recognize four")
         servo_runner.move(0)
         servo_runner.moveByListAsync([90, 0, 90, 0, 90, 0, 90, 0, 90, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
-        print("wait for microphone, 20 seconds")
+        print("wait for microphone for 焦虑压力, 20 seconds")
         time.sleep(20.0)
-        setence = audio_detection_runner.get_sentence()
-        print("get sentence: ", setence)
+        sentence = audio_detection_runner.get_sentence()
+        print("get sentence: ", sentence)
 
         ifRecognizeTwoHands = False
         for i in range(0, 60):
@@ -86,7 +86,7 @@ if __name__ == '__main__':
           print("recognize two hands, reset ")
           continue
 
-        if "焦虑" in setence or "压力":
+        if "焦虑" in sentence or "压力" in sentence:
           print("焦虑压力")
           light_runner.startFlowByFile("effect1.json")
           durationList = light_runner.getLightJSONDurationByFile('effect1.json')
