@@ -20,6 +20,7 @@ class ServoRunner():
       time.sleep(100)
 
   def smoothMoveTo(self, degree, duration):
+    print(degree, duration)
     degreeStart  = self.currPos
     degreeEnd = degree
     self.currPos = degree
