@@ -26,18 +26,21 @@ def getEmotion(ifDebug=True):
     possibility_image = emotion_detection_runner.get_emotion_image("picture.jpg")
 
     maxEmotion = emotionList[0]
-    # maxPossibility = possibility_image[0] + possibility_text[0]
+    maxPossibility = possibility_image[0]
 
     for i in range(1, len(emotionList)):
         if possibility_image[i] > maxPossibility:
             maxEmotion = emotionList[i]
             maxPossibility = possibility_image[i]
 
+    if maxPossibility == 0:
+        return "悲伤", True
+
     if ifDebug:
         # print("detection finished\n", possibility_text, possibility_image)
         print("Emotion: ", maxEmotion, maxPossibility)
 
-    return maxEmotion
+    return maxEmotion, False
 
 
 if __name__ == '__main__':
@@ -57,8 +60,11 @@ if __name__ == '__main__':
     while True:
         print("wait for picture, 5 seconds")
         time.sleep(5.0)
-        emotion = getEmotion()
+        emotion, ifGptFailed = getEmotion()
         print("get emotion: ", emotion)
+        if ifGptFailed:
+            print("GPT failure")
+            continue
         if emotion == '悲伤' or cheatEmotionDetection:
             randN = random.randint(0, 12)
             print(randN)
