@@ -10,7 +10,7 @@ import time
 from yeelight import *
 
 emotionList = ['开心', '悲伤', '中立']
-ifTest = True
+ifTest = False
 
 def getEmotion(ifDebug=True):
   if ifTest:
