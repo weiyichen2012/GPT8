@@ -10,9 +10,13 @@ import time
 from yeelight import *
 
 emotionList = ['开心', '悲伤', '中立']
+ifTest = True
 
 def getEmotion(ifDebug=True):
-  sentence = audio_detection_runner.get_sentence()
+  if ifTest:
+    sentence = "我很伤心"
+  else:
+    sentence = audio_detection_runner.get_sentence()
   possibility_text = emotion_detection_runner.get_emotion_text(sentence)
   possibility_image = emotion_detection_runner.get_emotion_image("picture.jpg")
 

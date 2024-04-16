@@ -9,15 +9,18 @@ class LightRunner():
         self.baseDir = baseDir
         self.selfBaseDir = baseDir + '/light/'
         self.ifDebug = ifDebug
-        self.bulb = Bulb("192.168.1.101")
+        # self.bulb = Bulb("192.168.1.101")
 
     def startFlow(self, transitions, count):
+
+        self.bulb = Bulb("192.168.1.101")
         flow = Flow(
             count=count,
             transitions=transitions,
             action=Flow.actions.recover
         )
         self.bulb.start_flow(flow)
+        # self.bulb.
 
     def getLightJSONDuration(self, json):
         durations = []
