@@ -41,6 +41,7 @@ if __name__ == '__main__':
   light_runner = LightRunner(baseDir, ifDebug=True)
 
   audio_detection_runner.start_regonize()
+  possibility_text = emotion_detection_runner.get_emotion_text("我很伤心")
 
   while True:
     print("wait for microphone, 20 seconds")

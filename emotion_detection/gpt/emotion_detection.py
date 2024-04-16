@@ -51,7 +51,7 @@ class EmotionDetectionRunner():
       "max_tokens": 300
     }
 
-    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload, proxies={"https": "http://127.0.0.1:1080"})
+    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload, proxies={"https": "https://127.0.0.1:1080"})
     content = response.json()["choices"][0]['message']['content']
     if self.ifDebug:
       print(content)
