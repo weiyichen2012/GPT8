@@ -103,7 +103,8 @@ class HandRecognitionRunner():
         self.drawingModule = mediapipe.solutions.drawing_utils
         self.handsModule = mediapipe.solutions.hands
         self.hands = self.handsModule.Hands(static_image_mode=False, min_detection_confidence=0.7, min_tracking_confidence=0.7, max_num_hands=2)
-    
+        self.cnt = [0, 0, 0, 0]
+
     def get_dist(self, a, b):
         return ((a.x - b.x) ** 2 + (a.y - b.y) ** 2 ) ** 0.5
 
@@ -170,7 +171,41 @@ class HandRecognitionRunner():
         #     if key == 27:
         #         return
         
-        return ifTwoHands, mid_x, ifGesture_four, ifGesture_lanhua, ifGesture_ok
+        ifTwoHandsOut = False
+        ifGesture_fourOut = False
+        ifGesture_lanhuaOut = False
+        ifGesture_okOut = False
+
+        if ifTwoHands:
+            self.cnt[0] += 1
+            if self.cnt[0] > 50:
+                ifTwoHandsOut = True
+        else:
+            self.cnt[0] = 0
+        
+
+        if ifGesture_four:
+            self.cnt[1] += 1
+            if self.cnt[1] > 50:
+                ifGesture_fourOut = True
+        else:
+            self.cnt[1] = 0
+
+        if ifGesture_lanhua:
+            self.cnt[2] += 1
+            if self.cnt[2] > 50:
+                ifGesture_lanhuaOut = True
+        else:
+            self.cnt[2] = 0
+
+        if ifGesture_ok:
+            self.cnt[3] += 1
+            if self.cnt[3] > 50:
+                ifGesture_okOut = True
+        else:
+            self.cnt[3] = 0
+
+        return ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut
 
 class ImageTakerRunner():
     def __init__(self, baseDir, ifDebug=True):
