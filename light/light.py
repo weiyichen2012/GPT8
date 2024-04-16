@@ -61,8 +61,8 @@ class LightRunner():
         return durations
 
     def getLightJSONDurationByFile(self, filename):
-        os.chdir(self.selfBaseDir)
-        f = open(filename, 'r')
+        # os.chdir(self.selfBaseDir)
+        f = open(self.selfBaseDir + filename, 'r')
         obj = json.loads(f.read())
         return self.getLightJSONDuration(obj)
 
@@ -135,8 +135,8 @@ class LightRunner():
 
 
     def startFlowByFile(self, filename):
-        os.chdir(self.selfBaseDir)
-        f = open(filename, 'r')
+        # os.chdir(self.selfBaseDir)
+        f = open(self.selfBaseDir + filename, 'r')
         obj = json.loads(f.read())
         return self.startFlowByJSON(obj)
 

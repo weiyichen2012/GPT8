@@ -9,9 +9,9 @@ os.environ['https_proxy'] = 'localhost:1080'
 
 class AssistantRunner():
   def __init__(self, baseDir, assistant_id="asst_ut9FZHED4E6pS5MaKAgDsqio", thread_id="thread_iyopchhwZbtjmCjcI4BIeuCB") -> None:
-    os.chdir(baseDir)
+    # os.chdir(baseDir)
     print(baseDir)
-    f = open("api_key", "r")
+    f = open(self.baseDir + "api_key", "r")
     api_key = f.readline()
     self.api_key = api_key
 

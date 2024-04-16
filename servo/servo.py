@@ -47,8 +47,8 @@ class ServoRunner():
     self.thread.start()
 
   def moveByFile(self, fileName, durationList):
-    os.chdir(self.selfBaseDir)
-    f = open(fileName, 'r')
+    # os.chdir(self.selfBaseDir)
+    f = open(self.selfBaseDir + fileName, 'r')
     obj = json.loads(f.read())
     # self.moveByListRunner(obj['list'], durationList)
     self.fileThread = threading.Thread(target=self.moveByListRunner, args=(obj['list'], durationList))

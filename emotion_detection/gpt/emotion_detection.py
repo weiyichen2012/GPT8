@@ -14,8 +14,8 @@ class EmotionDetectionRunner():
     return
   
   def get_emotion_text(self, text: str) -> str:
-    os.chdir(self.baseDir)
-    f = open("api_key", "r")
+    # os.chdir(self.baseDir)
+    f = open(self.baseDir + "api_key", "r")
     api_key = f.readline()
 
     sentence = ""
@@ -73,11 +73,11 @@ class EmotionDetectionRunner():
       return base64.b64encode(image_file.read()).decode('utf-8')
 
   def get_emotion_description(self, image_path):
-    os.chdir(self.baseDir)
-    f = open("api_key", "r")
+    # os.chdir(self.baseDir)
+    f = open(self.baseDir + "api_key", "r")
     api_key = f.readline()
 
-    base64_image = self.encode_image(image_path)
+    base64_image = self.encode_image(self.baseDir + image_path)
 
     headers = {
       "Content-Type": "application/json",
@@ -117,11 +117,11 @@ class EmotionDetectionRunner():
 
 
   def get_emotion_image(self, image_path: str) -> str:
-    os.chdir(self.baseDir)
-    f = open("api_key", "r")
+    # os.chdir(self.baseDir)
+    f = open(self.baseDir + "api_key", "r")
     api_key = f.readline()
 
-    base64_image = self.encode_image(image_path)
+    base64_image = self.encode_image(self.baseDir + image_path)
 
     headers = {
       "Content-Type": "application/json",

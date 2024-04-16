@@ -5,6 +5,10 @@ from threading import Thread
 from queue import Queue
 import time
 
+os.environ['http_proxy'] = 'localhost:1080'
+os.environ['https_proxy'] = 'localhost:1080'
+
+
 class AudioDetectionRunner():
     def __init__(self, baseDir, ifDebug=True) -> None:
         self.baseDir = baseDir
@@ -18,7 +22,7 @@ class AudioDetectionRunner():
         # this runs in a background thread
         if self.ifDebug:
             print("recognize_worker")
-        os.chdir(self.selfBaseDir)
+        # os.chdir(self.selfBaseDir)
         while True:
             audio = self.audio_queue.get()  # retrieve the next audio processing job from the main thread
             if audio is None: break  # stop processing if the main thread is done
@@ -39,8 +43,6 @@ class AudioDetectionRunner():
             #     language="zh",
             # )
             # print(transcription)
-            os.environ['http_proxy'] = 'localhost:1080'
-            os.environ['https_proxy'] = 'localhost:1080'
             try:
                 r = sr.Recognizer()
                 transcription = r.recognize_google(audio, language="zh-CN")
@@ -52,15 +54,12 @@ class AudioDetectionRunner():
             except sr.RequestError as e:
                 print("请求出错：{0}".format(e))
 
-            os.environ.unsetenv('http_proxy');
-            os.environ.unsetenv('https_proxy');
-
             self.audio_queue.task_done()  # mark the audio processing job as completed in the queue
 
     def listen_worker(self):
         if self.ifDebug:
             print("listen_worker")
-        os.chdir(self.selfBaseDir)
+        # os.chdir(self.selfBaseDir)
         recognize_thread = Thread(target=self.recognize_worker)
         recognize_thread.daemon = True
         recognize_thread.start()
@@ -69,7 +68,7 @@ class AudioDetectionRunner():
         with sr.Microphone() as source:
             audioData = r.record(source, duration=1, offset=0)
             b = audioData.get_flac_data()
-            f = open("output.flac", "wb")
+            f = open(self.baseDir + "output.flac", "wb")
             f.write(b)
             f.close()
 
