@@ -9,7 +9,7 @@ from servo.servo import ServoRunner
 import time
 from yeelight import *
 
-cheatTwoHands = True #True 代表作弊，不识别
+cheatTwoHands = False #False 代表作弊，不识别
 
 emotionList = ['开心', '悲伤', '中立']
 ifTest = False
@@ -78,14 +78,14 @@ if __name__ == '__main__':
         sentence = audio_detection_runner.get_sentence()
         print("get sentence: ", sentence)
 
-        ifRecognizeTwoHands = cheatTwoHands
+        ifRecognizeTwoHands = False
         for i in range(0, 300):
           ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut = image_taker_runner.recognize_hand()
           if ifTwoHandsOut:
             ifRecognizeTwoHands = True
             break
         
-        if ifRecognizeTwoHands:
+        if ifRecognizeTwoHands and cheatTwoHands:
           print("recognize two hands, reset ")
           continue
 
