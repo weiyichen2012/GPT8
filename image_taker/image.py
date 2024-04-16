@@ -136,7 +136,7 @@ class HandRecognitionRunner():
 
                     if self.ifDebug:
                         print('4:', self.get_dist(pos4, pos13), self.get_dist(pos2, pos4))
-                        print('lanhua:', self.get_dist(pos4, pos20), self.get_dist(pos2, pos4))
+                        print('lanhua:', self.get_dist(pos4, pos12), self.get_dist(pos2, pos4))
                         print('ok:', self.get_dist(pos4, pos8), self.get_dist(pos2, pos4))
 
                     if self.get_dist(pos4, pos13) < self.get_dist(pos2, pos4):
