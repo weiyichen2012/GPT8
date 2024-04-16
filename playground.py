@@ -20,21 +20,21 @@ ifTest = False
 
 
 def getEmotion(ifDebug=True):
-    sentence = audio_detection_runner.get_sentence()
+    # sentence = audio_detection_runner.get_sentence()
 
-    possibility_text = emotion_detection_runner.get_emotion_text("sentence")
+    # possibility_text = emotion_detection_runner.get_emotion_text("sentence")
     possibility_image = emotion_detection_runner.get_emotion_image("picture.jpg")
 
     maxEmotion = emotionList[0]
-    maxPossibility = possibility_image[0] + possibility_text[0]
+    # maxPossibility = possibility_image[0] + possibility_text[0]
 
     for i in range(1, len(emotionList)):
-        if possibility_image[i] + possibility_text[i] > maxPossibility:
+        if possibility_image[i] > maxPossibility:
             maxEmotion = emotionList[i]
-            maxPossibility = possibility_image[i] + possibility_text[i]
+            maxPossibility = possibility_image[i]
 
     if ifDebug:
-        print("detection finished\n", possibility_text, possibility_image)
+        # print("detection finished\n", possibility_text, possibility_image)
         print("Emotion: ", maxEmotion, maxPossibility)
 
     return maxEmotion
