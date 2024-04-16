@@ -44,15 +44,12 @@ if __name__ == '__main__':
   audio_detection_runner.start_regonize()
   # possibility_text = emotion_detection_runner.get_emotion_text("我很伤心")
 
-  arm_control_runner.moveArmFile('1 fast forward.d6a')
+  # arm_control_runner.moveArmFile('1 fast forward.d6a')
 
 
   while True:
     print("wait for microphone, 20 seconds")
-    if ifTest:
-      time.sleep(1.0)
-    else:
-      time.sleep(20.0)
+    time.sleep(20.0)
     emotion = getEmotion()
     print("get emotion: ", emotion)
     if emotion == '悲伤':
@@ -78,28 +75,28 @@ if __name__ == '__main__':
         sentence = audio_detection_runner.get_sentence()
         print("get sentence: ", sentence)
 
-        ifRecognizeTwoHands = False
-        for i in range(0, 300):
-          ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut = image_taker_runner.recognize_hand()
-          if ifTwoHandsOut:
-            ifRecognizeTwoHands = True
-            break
+        # ifRecognizeTwoHands = False
+        # for i in range(0, 300):
+        #   ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut = image_taker_runner.recognize_hand()
+        #   if ifTwoHandsOut:
+        #     ifRecognizeTwoHands = True
+        #     break
         
-        if ifRecognizeTwoHands:
-          print("recognize two hands, reset ")
-          continue
+        # if ifRecognizeTwoHands:
+        #   print("recognize two hands, reset ")
+        #   continue
 
         # if "焦虑" in sentence or "压力" in sentence:
-        print("焦虑压力")
+        # print("焦虑压力")
         light_runner.startFlowByFile("effect1.json")
         durationList = light_runner.getLightJSONDurationByFile('effect1.json')
         servo_runner.moveByFile('servo1.json', durationList)
+        arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
         
         durationSum = 0.0
         for duration in durationList:
           durationSum += duration
         time.sleep(durationSum)
-        arm_control_runner.moveArmFile('1 fast forward.d6a')
         # else:
         #   ...
         # arm_control_runner.moveArmFile('1 fast forward.d6a')
