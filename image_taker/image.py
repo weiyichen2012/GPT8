@@ -136,11 +136,11 @@ class HandRecognitionRunner():
                     pos12 = handLandmark.landmark[12]
                     pos13 = handLandmark.landmark[13]
 
-                    if self.ifDebug:
-                        print('twohand:', ifTwoHands)
-                        print('4:', self.get_dist(pos4, pos13), self.get_dist(pos3, pos4))
-                        print('lanhua:', self.get_dist(pos4, pos12), self.get_dist(pos3, pos4))
-                        print('ok:', self.get_dist(pos4, pos8), self.get_dist(pos3, pos4))
+                    # if self.ifDebug:
+                    #     print('twohand:', ifTwoHands)
+                    #     print('4:', self.get_dist(pos4, pos13), self.get_dist(pos3, pos4))
+                    #     print('lanhua:', self.get_dist(pos4, pos12), self.get_dist(pos3, pos4))
+                    #     print('ok:', self.get_dist(pos4, pos8), self.get_dist(pos3, pos4))
 
                     if self.get_dist(pos4, pos13) < self.get_dist(pos3, pos4):
                         ifGesture_four = True
@@ -205,7 +205,7 @@ class HandRecognitionRunner():
         else:
             self.cnt[3] = 0
 
-        print(self.cnt)
+        # print(self.cnt)
 
         return ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut
 

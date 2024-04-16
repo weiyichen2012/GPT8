@@ -40,7 +40,7 @@ if __name__ == '__main__':
   baseDir = '/home/pi/GPT8/'
   audio_detection_runner = AudioDetectionRunner(baseDir, ifDebug=False)
   emotion_detection_runner = EmotionDetectionRunner(baseDir, ifDebug=False)
-  image_taker_runner = ImageTakerRunner(baseDir, ifDebug=True)
+  image_taker_runner = ImageTakerRunner(baseDir, ifDebug=True)#设成True打开窗口
   arm_control_runner = ArmControlRunner(baseDir, ifDebug=False)
   servo_runner = ServoRunner(baseDir, ifDebug=False)
   light_runner = LightRunner(baseDir, ifDebug=False)
@@ -97,7 +97,7 @@ if __name__ == '__main__':
           durationList = light_runner.getLightJSONDurationByFile('effect1.json')
           servo_runner.moveByFile('servo1.json', durationList)
           arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
-          
+
           durationSum = 0.0
           for duration in durationList:
             durationSum += duration
@@ -108,7 +108,7 @@ if __name__ == '__main__':
           durationList = light_runner.getLightJSONDurationByFile('effect1.json')
           servo_runner.moveByFile('servo1.json', durationList)
           arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
-          
+
           durationSum = 0.0
           for duration in durationList:
             durationSum += duration
@@ -120,7 +120,7 @@ if __name__ == '__main__':
             durationList = light_runner.getLightJSONDurationByFile('effect1.json')
             servo_runner.moveByFile('servo1.json', durationList)
             arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
-            
+
             durationSum = 0.0
             for duration in durationList:
               durationSum += duration
@@ -130,7 +130,7 @@ if __name__ == '__main__':
             durationList = light_runner.getLightJSONDurationByFile('effect2.json')
             servo_runner.moveByFile('servo1.json', durationList)
             arm_control_runner.moveArmFileList(['1 slow forward.d6a', '1 slow forward.d6a', '1 slow forward.d6a'])
-            
+
             durationSum = 0.0
             for duration in durationList:
               durationSum += duration
