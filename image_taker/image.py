@@ -114,7 +114,7 @@ class HandRecognitionRunner():
         ifTwoHands = False
         mid_x = 0
         ifGesture_four = False
-        ifGesture_three = False
+        ifGesture_lanhua = False
         ifGesture_ok = False
 
         if frame is not None:
@@ -131,19 +131,19 @@ class HandRecognitionRunner():
                     pos2 = handLandmark.landmark[2]
                     pos4 = handLandmark.landmark[4]
                     pos8 = handLandmark.landmark[8]
+                    pos12 = handLandmark.landmark[12]
                     pos13 = handLandmark.landmark[13]
-                    pos20 = handLandmark.landmark[20]
 
                     if self.ifDebug:
                         print('4:', self.get_dist(pos4, pos13), self.get_dist(pos2, pos4))
-                        print('3:', self.get_dist(pos4, pos20), self.get_dist(pos2, pos4))
+                        print('lanhua:', self.get_dist(pos4, pos20), self.get_dist(pos2, pos4))
                         print('ok:', self.get_dist(pos4, pos8), self.get_dist(pos2, pos4))
 
                     if self.get_dist(pos4, pos13) < self.get_dist(pos2, pos4):
                         ifGesture_four = True
                     
-                    if self.get_dist(pos4, pos20) < self.get_dist(pos2, pos4):
-                        ifGesture_three = True
+                    if self.get_dist(pos4, pos12) < self.get_dist(pos2, pos4):
+                        ifGesture_lanhua = True
                     
                     if self.get_dist(pos4, pos8) < self.get_dist(pos2, pos4):
                         ifGesture_ok = True
@@ -168,7 +168,7 @@ class HandRecognitionRunner():
         #     if key == 27:
         #         return
         
-        return ifTwoHands, mid_x, ifGesture_four, ifGesture_three, ifGesture_ok
+        return ifTwoHands, mid_x, ifGesture_four, ifGesture_lanhua, ifGesture_ok
 
 class ImageTakerRunner():
     def __init__(self, baseDir, ifDebug=True):
