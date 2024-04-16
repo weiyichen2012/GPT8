@@ -51,7 +51,7 @@ class EmotionDetectionRunner():
       "max_tokens": 300
     }
 
-    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload, proxies={"https": "https://127.0.0.1:1080"})
+    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload, proxies={"https": "http://127.0.0.1:1080"})
     content = response.json()["choices"][0]['message']['content']
     if self.ifDebug:
       print(content)
@@ -179,10 +179,10 @@ class EmotionDetectionRunner():
     return possibilityList
 
 if __name__ == "__main__":
-  emotionDetectionRunner = EmotionDetectionRunner(".")
+  emotionDetectionRunner = EmotionDetectionRunner()
   t1 = time.time()
   # emotionDetectionRunner.get_emotion_text("I'm so tired of studying")
-  # emotionDetectionRunner.get_emotion_text("这游戏太好玩了")
-  emotionDetectionRunner.get_emotion_image("hqx_happy.jpg")
+  emotionDetectionRunner.get_emotion_text("我很伤心")
+  # emotionDetectionRunner.get_emotion_image("hqx_happy.jpg")
   t2 = time.time()
   print("Used time: ", t2 - t1, "s")
