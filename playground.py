@@ -43,7 +43,7 @@ def getEmotion(ifDebug=True):
 if __name__ == '__main__':
     baseDir = '/home/pi/GPT8/'
     audio_detection_runner = AudioDetectionRunner(baseDir, ifDebug=False)
-    emotion_detection_runner = EmotionDetectionRunner(baseDir, ifDebug=False)
+    emotion_detection_runner = EmotionDetectionRunner(baseDir, ifDebug=True)
     image_taker_runner = ImageTakerRunner(baseDir, ifDebug=True)  # 设成True打开窗口
     arm_control_runner = ArmControlRunner(baseDir, ifDebug=False)
     servo_runner = ServoRunner(baseDir, ifDebug=False)
@@ -55,8 +55,8 @@ if __name__ == '__main__':
     # arm_control_runner.moveArmFile('1 fast forward.d6a')
 
     while True:
-        print("wait for microphone, 20 seconds")
-        time.sleep(20.0)
+        print("wait for picture, 5 seconds")
+        time.sleep(5.0)
         emotion = getEmotion()
         print("get emotion: ", emotion)
         if emotion == '悲伤' or cheatEmotionDetection:
