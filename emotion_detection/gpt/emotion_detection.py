@@ -18,6 +18,7 @@ class EmotionDetectionRunner():
     print(self.baseDir)
     f = open(self.baseDir + "api_key", "r")
     api_key = f.readline()
+    print("!", api_key, "!")
 
     sentence = ""
     for i in range(0, len(emotionList)):
