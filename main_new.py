@@ -9,6 +9,8 @@ from servo.servo import ServoRunner
 import time
 from yeelight import *
 
+cheatTwoHands = True #True 代表作弊，不识别
+
 emotionList = ['开心', '悲伤', '中立']
 ifTest = False
 
@@ -65,7 +67,8 @@ if __name__ == '__main__':
         if ifGesture_fourOut:
           ifRecognizeFour = True
           break
-    
+
+      # 识别到光球汇聚后的语音识别，触发后续对应程序
       if ifRecognizeFour:
         print("recognize four")
         servo_runner.move(0)
@@ -75,28 +78,41 @@ if __name__ == '__main__':
         sentence = audio_detection_runner.get_sentence()
         print("get sentence: ", sentence)
 
-        # ifRecognizeTwoHands = False
-        # for i in range(0, 300):
-        #   ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut = image_taker_runner.recognize_hand()
-        #   if ifTwoHandsOut:
-        #     ifRecognizeTwoHands = True
-        #     break
+        ifRecognizeTwoHands = cheatTwoHands
+        for i in range(0, 300):
+          ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut = image_taker_runner.recognize_hand()
+          if ifTwoHandsOut:
+            ifRecognizeTwoHands = True
+            break
         
-        # if ifRecognizeTwoHands:
-        #   print("recognize two hands, reset ")
-        #   continue
+        if ifRecognizeTwoHands:
+          print("recognize two hands, reset ")
+          continue
 
-        # if "焦虑" in sentence or "压力" in sentence:
+        if "考试" in sentence or "焦虑" in sentence or "压力" in sentence:
         # print("焦虑压力")
-        light_runner.startFlowByFile("effect1.json")
-        durationList = light_runner.getLightJSONDurationByFile('effect1.json')
-        servo_runner.moveByFile('servo1.json', durationList)
-        arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
-        
-        durationSum = 0.0
-        for duration in durationList:
-          durationSum += duration
-        time.sleep(durationSum)
+          light_runner.startFlowByFile("effect1.json")
+          durationList = light_runner.getLightJSONDurationByFile('effect1.json')
+          servo_runner.moveByFile('servo1.json', durationList)
+          arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
+          
+          durationSum = 0.0
+          for duration in durationList:
+            durationSum += duration
+          time.sleep(durationSum)
+        #仿照这里写
+        elif "实习" in sentence or "上学" in sentence or "通宵" in sentence:
+          light_runner.startFlowByFile("effect1.json")
+          durationList = light_runner.getLightJSONDurationByFile('effect1.json')
+          servo_runner.moveByFile('servo1.json', durationList)
+          arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
+          
+          durationSum = 0.0
+          for duration in durationList:
+            durationSum += duration
+          time.sleep(durationSum)
+          ...
+
         # else:
         #   ...
         # arm_control_runner.moveArmFile('1 fast forward.d6a')
