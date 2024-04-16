@@ -14,12 +14,10 @@ class ServoRunner():
     self.move(90)
   
   def smoothMoveWorker(self, degreeStart, degreeEnd, duration):
-    durationMs = int(duration * 1000)
-    print('durationMs', durationMs, int(durationMs / 100))
-    for i in range(0, int(durationMs / 100)):
-      print(i, degreeStart + (degreeEnd - degreeStart) * i / (durationMs / 100))
-      self.move(degreeStart + (degreeEnd - degreeStart) * i / (durationMs / 100))
-      time.sleep(100)
+    for i in range(0, 100):
+      print(i, degreeStart + (degreeEnd - degreeStart) * i / 100)
+      self.move(degreeStart + (degreeEnd - degreeStart) * i / 100)
+      time.sleep(duration / 100)
 
   def smoothMoveTo(self, degree, duration):
     print(degree, duration)
