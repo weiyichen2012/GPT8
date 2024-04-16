@@ -66,6 +66,11 @@ class ArmControlRunner():
         for action in actionList:
             self.moveArmAction(action)
             time.sleep(action['time'] / 1000.0)
+    
+    def fileListRunner(self, fileList):
+        for fileName in fileList:
+            actionList = self.readArmFile(fileName)
+            self.actionRunner(actionList)
 
     def moveArmActionList(self, actionList):
         # self.actionRunner(actionList)
@@ -107,9 +112,16 @@ class ArmControlRunner():
     def moveArmFile(self, fileName):
         actionList = self.readArmFile(fileName)
         self.moveArmActionList(actionList)
+    
+    def moveArmFileList(self, fileList):
+        self.fileActionThread = Thread(target = self.fileListRunner, args = (fileList,))
+        if self.ifDebug:
+            print("thread start")
+        self.fileActionThread.start()
 
 if __name__ == "__main__":
     armControlRunner = ArmControlRunner(os.path.abspath(os.path.join(os.getcwd(), os.pardir)), ifDebug = True)
-    armControlRunner.moveArmFile(r'1 fast backward.d6a')
-    armControlRunner.moveArmFile(r'1 fast forward.d6a')
+    # armControlRunner.moveArmFile(r'1 fast backward.d6a')
+    # armControlRunner.moveArmFile(r'1 fast forward.d6a')
+    armControlRunner.moveArmFileList(['1 fast backward.d6a', '1 fast forward.d6a', '1 fast backward.d6a', '1 fast forward.d6a'])
     # armControlRunner.moveArmActionList(armControlRunner.readArmFile("reset.d6a"))
