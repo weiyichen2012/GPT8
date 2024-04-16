@@ -64,7 +64,7 @@ if __name__ == '__main__':
         print("get emotion: ", emotion)
         if ifGptFailed:
             print("GPT failure")
-            continue
+            time.sleep(1)
         if emotion == '悲伤' or cheatEmotionDetection:
             randN = random.randint(0, 12)
             print(randN)
