@@ -19,7 +19,16 @@ class LightRunner():
             transitions=transitions,
             action=Flow.actions.recover
         )
-        self.bulb.start_flow(flow)
+        while True:
+            ifSuccess = False
+            try:
+                self.bulb.start_flow(flow)
+                ifSuccess = True
+            except BulbException as e:
+                continue
+            if ifSuccess:
+                break
+
         # self.bulb.
 
     def getLightJSONDuration(self, json):
