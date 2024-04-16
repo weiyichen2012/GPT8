@@ -2,10 +2,12 @@ import RPi.GPIO as GPIO
 import os
 import time
 import threading
+import json
 
 class ServoRunner():
   def __init__(self, baseDir):
     self.baseDir = baseDir
+    self.selfBaseDir = baseDir + "/servo/"
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(24, GPIO.OUT)
     self.pwm=GPIO.PWM(24, 50)
@@ -30,6 +32,18 @@ class ServoRunner():
 
   def move(self, degree):
     self.pwm.ChangeDutyCycle(2.5 + degree / 180 * 10)
+
+  def moveByList(self, degreeList, durationList):
+    for i in range(0, degreeList):
+      self.move(degreeList[i])
+      time.sleep(durationList[i])
+  
+  def moveByFile(self, fileName, durationList):
+    os.chdir(self.selfBaseDir)
+    f = open(fileName, 'r')
+    obj = json.loads(f.read())
+    self.moveByList(obj['list'], durationList)
+
 
 if __name__ == '__main__':
   servoRunner = ServoRunner(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))

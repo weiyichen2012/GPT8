@@ -9,7 +9,7 @@ class LightRunner():
         self.baseDir = baseDir
         self.selfBaseDir = baseDir + '/light/'
         self.ifDebug = ifDebug
-        self.bulb = Bulb("192.168.0.101")
+        self.bulb = Bulb("192.168.1.101")
 
     def startFlow(self, transitions, count):
         flow = Flow(
@@ -25,18 +25,18 @@ class LightRunner():
             if 'RGBTRansition' in transition:
                 tmp_transition = transition['RGBTRansition']
 
-                tmp_duration = 1000
+                tmp_duration = 1
                 pattern = regex.findall(r'duration=(.*)', tmp_transition[3])
                 if len(pattern) > 0:
                     tmp_duration = int(pattern[0])
 
                 durations.append(tmp_duration)
             elif 'SleepTransition' in transition:
-                tmp_duration = 1000
+                tmp_duration = 1
                 pattern = regex.findall(r'duration=(.*)', transition['SleepTransition'][0])
                 if len(pattern) > 0:
                     tmp_duration = int(pattern[0])
-                durations.append(tmp_duration)
+                durations.append(tmp_duration / 1000.0)
             else:
                 print('Error in light: unknown transition type')
         

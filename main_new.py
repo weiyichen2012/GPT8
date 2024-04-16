@@ -38,5 +38,11 @@ if __name__ == '__main__':
   image_taker_runner = ImageTakerRunner(baseDir, ifDebug=True)
   arm_control_runner = ArmControlRunner(baseDir, ifDebug=True)
   servo_runner = ServoRunner(baseDir, ifDebug=True)
+  light_runner = LightRunner(baseDir, ifDebug=True)
 
-  audio_detection_runner.start_regonize()
+  # light_runner.startFlowByFile("effect1.json")
+  durationList = light_runner.getLightJSONDurationByFile('effect1.json')
+  servo_runner.moveByFile('servo1.json', durationList)
+  # servo_runner;
+
+  # audio_detection_runner.start_regonize()
