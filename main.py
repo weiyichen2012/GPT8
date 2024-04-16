@@ -15,7 +15,7 @@ emotionList = ['开心', '悲伤', '中立']
 #     image_taker_runner.recognize_hand()
 
 def handFollow(ifDebug=True):
-  ifTwoHands, mid_x, ifGesture1 = image_taker_runner.recognize_hand()
+  ifTwoHands, mid_x, ifGesture_four, ifGesture_three, ifGesture_ok = image_taker_runner.recognize_hand()
   if ifTwoHands:
     currPos = arm_control_runner.getArmPos()
     if mid_x < 0.4:

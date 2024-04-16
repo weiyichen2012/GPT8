@@ -113,7 +113,9 @@ class HandRecognitionRunner():
 
         ifTwoHands = False
         mid_x = 0
-        ifGesture1 = False
+        ifGesture_four = False
+        ifGesture_three = False
+        ifGesture_ok = False
 
         if frame is not None:
             frame1 = cv2.resize(frame, (640, 480))
@@ -121,18 +123,31 @@ class HandRecognitionRunner():
                 results = self.hands.process(cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB))
             except Exception as e:
                 print('hand recognition error:', e)
-                return ifTwoHands, mid_x, ifGesture1
+                return ifTwoHands, mid_x, ifGesture_four
 
             if results.multi_hand_landmarks != None:
                 for handLandmark in results.multi_hand_landmarks:
                     self.drawingModule.draw_landmarks(frame1, handLandmark, self.handsModule.HAND_CONNECTIONS)            
                     pos2 = handLandmark.landmark[2]
                     pos4 = handLandmark.landmark[4]
-                    pos17 = handLandmark.landmark[17]
+                    pos8 = handLandmark.landmark[8]
+                    pos13 = handLandmark.landmark[13]
+                    pos20 = handLandmark.landmark[20]
+
                     if self.ifDebug:
-                        print(self.get_dist(pos4, pos17), self.get_dist(pos2, pos4))
-                    if self.get_dist(pos4, pos17) < self.get_dist(pos2, pos4):
-                        ifGesture1 = True
+                        print('4:', self.get_dist(pos4, pos13), self.get_dist(pos2, pos4))
+                        print('3:', self.get_dist(pos4, pos20), self.get_dist(pos2, pos4))
+                        print('ok:', self.get_dist(pos4, pos8), self.get_dist(pos2, pos4))
+
+                    if self.get_dist(pos4, pos13) < self.get_dist(pos2, pos4):
+                        ifGesture_four = True
+                    
+                    if self.get_dist(pos4, pos20) < self.get_dist(pos2, pos4):
+                        ifGesture_three = True
+                    
+                    if self.get_dist(pos4, pos8) < self.get_dist(pos2, pos4):
+                        ifGesture_ok = True
+
             
             # if results.multi_hand_landmarks and len(results.multi_hand_landmarks) == 2:
             #     ifTwoHands = True
@@ -153,7 +168,7 @@ class HandRecognitionRunner():
         #     if key == 27:
         #         return
         
-        return ifTwoHands, mid_x, ifGesture1
+        return ifTwoHands, mid_x, ifGesture_four, ifGesture_three, ifGesture_ok
 
 class ImageTakerRunner():
     def __init__(self, baseDir, ifDebug=True):
