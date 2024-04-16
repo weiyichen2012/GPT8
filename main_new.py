@@ -47,7 +47,7 @@ if __name__ == '__main__':
   audio_detection_runner.start_regonize()
   # possibility_text = emotion_detection_runner.get_emotion_text("我很伤心")
 
-  arm_control_runner.moveArm有File('1 fast forward.d6a')
+  arm_control_runner.moveArmFile('1 fast forward.d6a')
 
 
   while True:
