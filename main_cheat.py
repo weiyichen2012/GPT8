@@ -9,30 +9,29 @@ from servo.servo import ServoRunner
 import time
 from yeelight import *
 
-cheatTwoHands = True #False 代表作弊，不识别
+cheatTwoHands = True #False 代表作弊，true代表识别
 
 emotionList = ['开心', '悲伤', '中立']
-ifTest = False
 
-def getEmotion(ifDebug=True):
-  sentence = "我很伤心"
-  possibility_text = emotion_detection_runner.get_emotion_text(sentence)
-  possibility_image = emotion_detection_runner.get_emotion_image("picture.jpg")
-
-  maxEmotion = emotionList[0]
-  maxPossibility = possibility_image[0] + possibility_text[0]
-
-  for i in range(1, len(emotionList)):
-    if possibility_image[i] + possibility_text[i] > maxPossibility:
-      maxEmotion = emotionList[i]
-      maxPossibility = possibility_image[i] + possibility_text[i]
-  
-  if ifDebug:
-    print("Audio: ", sentence)
-    print("detection finished\n", possibility_text, possibility_image)
-    print("Emotion: ", maxEmotion, maxPossibility)
-  
-  return maxEmotion
+# def getEmotion(ifDebug=True):
+#   sentence = "我很伤心"
+#   possibility_text = emotion_detection_runner.get_emotion_text(sentence)
+#   possibility_image = emotion_detection_runner.get_emotion_image("picture.jpg")
+#
+#   maxEmotion = emotionList[0]
+#   maxPossibility = possibility_image[0] + possibility_text[0]
+#
+#   for i in range(1, len(emotionList)):
+#     if possibility_image[i] + possibility_text[i] > maxPossibility:
+#       maxEmotion = emotionList[i]
+#       maxPossibility = possibility_image[i] + possibility_text[i]
+#
+#   if ifDebug:
+#     print("Audio: ", sentence)
+#     print("detection finished\n", possibility_text, possibility_image)
+#     print("Emotion: ", maxEmotion, maxPossibility)
+#
+#   return maxEmotion
 
 if __name__ == '__main__':
   baseDir = '/home/pi/GPT8/'
@@ -56,7 +55,8 @@ if __name__ == '__main__':
     light_runner.startFlowByFile("effect1.json")
     arm_control_runner.moveArmFile('1 fast forward.d6a')      
     print("recognize hand")
-    time.sleep(10.0)  
+    time.sleep(10.0)  #等我们做出手势
+
     # 识别到光球汇聚后的语音识别，触发后续对应程序
     print("recognize four")
     servo_runner.move(0)
@@ -71,6 +71,7 @@ if __name__ == '__main__':
     servo_runner.moveByFile('servo1.json', durationList)
     arm_control_runner.moveArmFileList(['1 fast backward.d6a', '1 fast forward.d6a', '1 fast backward.d6a', '1 fast forward.d6a'])
     
+    #这里是在干嘛呀
     durationSum = 0.0
     for duration in durationList:
       durationSum += duration
