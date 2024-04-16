@@ -111,4 +111,5 @@ class ArmControlRunner():
 if __name__ == "__main__":
     armControlRunner = ArmControlRunner(os.path.abspath(os.path.join(os.getcwd(), os.pardir)), ifDebug = True)
     armControlRunner.moveArmFile(r'1 fast backward.d6a')
+    armControlRunner.moveArmFile(r'1 fast forward.d6a')
     # armControlRunner.moveArmActionList(armControlRunner.readArmFile("reset.d6a"))
