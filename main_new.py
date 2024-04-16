@@ -39,7 +39,7 @@ if __name__ == '__main__':
   baseDir = '/home/pi/GPT8/'
   audio_detection_runner = AudioDetectionRunner(baseDir, ifDebug=True)
   emotion_detection_runner = EmotionDetectionRunner(baseDir, ifDebug=True)
-  image_taker_runner = ImageTakerRunner(baseDir, ifDebug=False)
+  image_taker_runner = ImageTakerRunner(baseDir, ifDebug=True)
   arm_control_runner = ArmControlRunner(baseDir, ifDebug=True)
   servo_runner = ServoRunner(baseDir, ifDebug=True)
   light_runner = LightRunner(baseDir, ifDebug=True)
