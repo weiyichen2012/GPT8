@@ -47,6 +47,9 @@ if __name__ == '__main__':
   audio_detection_runner.start_regonize()
   # possibility_text = emotion_detection_runner.get_emotion_text("我很伤心")
 
+  arm_control_runner.moveArmByFile('1 fast forward.d6a')
+
+
   while True:
     print("wait for microphone, 20 seconds")
     time.sleep(20.0)
@@ -55,7 +58,7 @@ if __name__ == '__main__':
     if emotion == '悲伤':
       print('detect sad')
       light_runner.startFlowByFile("effect1.json")
-      # arm_control_runner.moveArmByFile('1 fast forward.d6a')
+      arm_control_runner.moveArmByFile('1 fast forward.d6a')
       
       print("recognize hand")
       
