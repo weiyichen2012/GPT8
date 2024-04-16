@@ -104,6 +104,11 @@ class ArmControlRunner():
             print(actionList)
         return actionList
 
+    def moveArmFile(self, fileName):
+        actionList = self.readArmFile(fileName)
+        self.moveArmActionList(actionList)
+
 if __name__ == "__main__":
     armControlRunner = ArmControlRunner()
-    armControlRunner.moveArmActionList(armControlRunner.readArmFile("reset.d6a"))
+    armControlRunner.moveArmFile(r'1 fast backward.d6a')
+    # armControlRunner.moveArmActionList(armControlRunner.readArmFile("reset.d6a"))
