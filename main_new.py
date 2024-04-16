@@ -8,6 +8,7 @@ from servo.servo import ServoRunner
 # from handRecognition.hand import HandRecognitionRunner
 import time
 from yeelight import *
+import random
 
 cheatEmotionDetection = True #True 代表作弊，自动悲伤
 cheatTwoHands = False #False 代表作弊，不识别
@@ -112,7 +113,28 @@ if __name__ == '__main__':
           for duration in durationList:
             durationSum += duration
           time.sleep(durationSum)
-          ...
+        else:
+          #随机执行
+          if random.random() < 0.5:
+            light_runner.startFlowByFile("effect1.json")
+            durationList = light_runner.getLightJSONDurationByFile('effect1.json')
+            servo_runner.moveByFile('servo1.json', durationList)
+            arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
+            
+            durationSum = 0.0
+            for duration in durationList:
+              durationSum += duration
+            time.sleep(durationSum)
+          else:
+            light_runner.startFlowByFile("effect2.json")
+            durationList = light_runner.getLightJSONDurationByFile('effect2.json')
+            servo_runner.moveByFile('servo1.json', durationList)
+            arm_control_runner.moveArmFileList(['1 slow forward.d6a', '1 slow forward.d6a', '1 slow forward.d6a'])
+            
+            durationSum = 0.0
+            for duration in durationList:
+              durationSum += duration
+            time.sleep(durationSum)
 
         # else:
         #   ...
