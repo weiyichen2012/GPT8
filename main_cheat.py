@@ -9,7 +9,7 @@ from servo.servo import ServoRunner
 import time
 from yeelight import *
 
-cheatTwoHands = False #False 代表作弊，不识别
+cheatTwoHands = True #False 代表作弊，不识别
 
 emotionList = ['开心', '悲伤', '中立']
 ifTest = False
