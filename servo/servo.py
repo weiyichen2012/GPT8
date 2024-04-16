@@ -5,9 +5,10 @@ import threading
 import json
 
 class ServoRunner():
-  def __init__(self, baseDir):
+  def __init__(self, baseDir, ifDebug=True):
     self.baseDir = baseDir
     self.selfBaseDir = baseDir + "/servo/"
+    self.ifDebug = ifDebug
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(24, GPIO.OUT)
     self.pwm=GPIO.PWM(24, 50)
