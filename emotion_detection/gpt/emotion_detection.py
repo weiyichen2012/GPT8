@@ -18,6 +18,7 @@ class EmotionDetectionRunner():
     print(self.baseDir)
     f = open(self.baseDir + "api_key", "r")
     api_key = f.readline()
+    api_key = api_key.strip("\n")
     print("!", api_key, "!")
 
     sentence = ""
