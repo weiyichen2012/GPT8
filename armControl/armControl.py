@@ -124,4 +124,5 @@ if __name__ == "__main__":
     # armControlRunner.moveArmFile(r'1 fast backward.d6a')
     # armControlRunner.moveArmFile(r'1 fast forward.d6a')
     armControlRunner.moveArmFileList(['1 fast backward.d6a', '1 fast forward.d6a', '1 fast backward.d6a', '1 fast forward.d6a'])
+    print("running");
     # armControlRunner.moveArmActionList(armControlRunner.readArmFile("reset.d6a"))
