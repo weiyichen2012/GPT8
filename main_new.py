@@ -60,7 +60,7 @@ if __name__ == '__main__':
       print("recognize hand")
       
       ifRecognizeFour = False
-      for i in range(0, 60):
+      for i in range(0, 300):
         ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut = image_taker_runner.recognize_hand()
         if ifGesture_fourOut:
           ifRecognizeFour = True
@@ -76,7 +76,7 @@ if __name__ == '__main__':
         print("get sentence: ", sentence)
 
         ifRecognizeTwoHands = False
-        for i in range(0, 60):
+        for i in range(0, 300):
           ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut = image_taker_runner.recognize_hand()
           if ifTwoHandsOut:
             ifRecognizeTwoHands = True
