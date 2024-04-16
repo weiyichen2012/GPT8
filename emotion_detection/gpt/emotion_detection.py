@@ -19,7 +19,6 @@ class EmotionDetectionRunner():
     f = open(self.baseDir + "api_key", "r")
     api_key = f.readline()
     api_key = api_key.strip("\n")
-    print("!", api_key, "!")
 
     sentence = ""
     for i in range(0, len(emotionList)):
@@ -79,6 +78,7 @@ class EmotionDetectionRunner():
     # os.chdir(self.baseDir)
     f = open(self.baseDir + "api_key", "r")
     api_key = f.readline()
+    api_key = api_key.strip("\n")
 
     base64_image = self.encode_image(self.baseDir + image_path)
 
@@ -123,6 +123,7 @@ class EmotionDetectionRunner():
     # os.chdir(self.baseDir)
     f = open(self.baseDir + "api_key", "r")
     api_key = f.readline()
+    api_key = api_key.strip("\n")
 
     base64_image = self.encode_image(self.baseDir + image_path)
 
