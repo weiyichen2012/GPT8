@@ -47,7 +47,7 @@ if __name__ == '__main__':
   audio_detection_runner.start_regonize()
   # possibility_text = emotion_detection_runner.get_emotion_text("我很伤心")
 
-  arm_control_runner.moveArmByFile('1 fast forward.d6a')
+  arm_control_runner.moveArm有File('1 fast forward.d6a')
 
 
   while True:
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     if emotion == '悲伤':
       print('detect sad')
       light_runner.startFlowByFile("effect1.json")
-      arm_control_runner.moveArmByFile('1 fast forward.d6a')
+      arm_control_runner.moveArmFile('1 fast forward.d6a')
       
       print("recognize hand")
       
@@ -99,10 +99,10 @@ if __name__ == '__main__':
           for duration in durationList:
             durationSum += duration
           time.sleep(durationSum)
-          # arm_control_runner.moveArmByFile('1 fast forward.d6a')
+          # arm_control_runner.moveArmFile('1 fast forward.d6a')
         else:
           ...
-        # arm_control_runner.moveArmByFile('1 fast forward.d6a')
+        # arm_control_runner.moveArmFile('1 fast forward.d6a')
       else:
         print("not recognize four")
         light_runner.startFlowByFile("effect2.json")
@@ -110,6 +110,6 @@ if __name__ == '__main__':
 
   # durationList = light_runner.getLightJSONDurationByFile('effect1.json')
   # light_runner.startFlowByFile("effect1.json")
-  # arm_control_runner.moveArmByFile('arm1.json', durationList)
+  # arm_control_runner.moveArmFile('arm1.json', durationList)
   # servo_runner;
 
