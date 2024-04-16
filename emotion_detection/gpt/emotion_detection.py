@@ -15,6 +15,7 @@ class EmotionDetectionRunner():
   
   def get_emotion_text(self, text: str) -> str:
     # os.chdir(self.baseDir)
+    print(self.baseDir)
     f = open(self.baseDir + "api_key", "r")
     api_key = f.readline()
 
