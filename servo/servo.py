@@ -36,6 +36,7 @@ class ServoRunner():
 
   def moveByList(self, degreeList, durationList):
     for i in range(0, degreeList):
+      print(degreeList)
       self.move(degreeList[i])
       time.sleep(durationList[i])
   
