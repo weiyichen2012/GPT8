@@ -34,7 +34,7 @@ class ServoRunner():
   def move(self, degree):
     self.pwm.ChangeDutyCycle(2.5 + degree / 180 * 10)
 
-  def moveByList(self, degreeList, durationList):
+  def moveByListRunner(self, degreeList, durationList):
     for i in range(0, len(degreeList)):
       if self.ifDebug:
         print("Move to: ", degreeList[i])
@@ -46,16 +46,20 @@ class ServoRunner():
     os.chdir(self.selfBaseDir)
     f = open(fileName, 'r')
     obj = json.loads(f.read())
-    self.moveByList(obj['list'], durationList)
+    # self.moveByListRunner(obj['list'], durationList)
+    self.fileThread = threading.Thread(target=self.moveByListRunner, args=(obj['list'], durationList))
+    self.fileThread.start()
 
 
 if __name__ == '__main__':
   servoRunner = ServoRunner(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
-  time.sleep(5)
-  servoRunner.move(0)
-  time.sleep(5)
-  servoRunner.move(180)
-  time.sleep(5)
+  # servoRunner.moveByFile('servo1.json')
+  # time.sleep(5)
+  # servoRunner.move(0)
+  # time.sleep(5)
+  # servoRunner.move(180)
+  # time.sleep(5)
+
   # servoRunner.smoothMoveTo(180, 1)
   # time.sleep(1)
   # servoRunner.smoothMoveTo(0, 5)

@@ -178,7 +178,7 @@ class HandRecognitionRunner():
 
         if ifTwoHands:
             self.cnt[0] += 1
-            if self.cnt[0] > 50:
+            if self.cnt[0] > 7:
                 ifTwoHandsOut = True
         else:
             self.cnt[0] = 0
@@ -186,24 +186,26 @@ class HandRecognitionRunner():
 
         if ifGesture_four:
             self.cnt[1] += 1
-            if self.cnt[1] > 50:
+            if self.cnt[1] > 7:
                 ifGesture_fourOut = True
         else:
             self.cnt[1] = 0
 
         if ifGesture_lanhua:
             self.cnt[2] += 1
-            if self.cnt[2] > 50:
+            if self.cnt[2] > 7:
                 ifGesture_lanhuaOut = True
         else:
             self.cnt[2] = 0
 
         if ifGesture_ok:
             self.cnt[3] += 1
-            if self.cnt[3] > 50:
+            if self.cnt[3] > 7:
                 ifGesture_okOut = True
         else:
             self.cnt[3] = 0
+
+        print(self.cnt)
 
         return ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut
 
