@@ -126,6 +126,7 @@ class HandRecognitionRunner():
                 return ifTwoHands, mid_x, ifGesture_four
 
             if results.multi_hand_landmarks != None:
+                ifTwoHands = len(results.multi_hand_landmarks) == 2
                 for handLandmark in results.multi_hand_landmarks:
                     self.drawingModule.draw_landmarks(frame1, handLandmark, self.handsModule.HAND_CONNECTIONS)            
                     pos2 = handLandmark.landmark[2]
@@ -135,6 +136,7 @@ class HandRecognitionRunner():
                     pos13 = handLandmark.landmark[13]
 
                     if self.ifDebug:
+                        print('twohand:', ifTwoHands)
                         print('4:', self.get_dist(pos4, pos13), self.get_dist(pos2, pos4))
                         print('lanhua:', self.get_dist(pos4, pos12), self.get_dist(pos2, pos4))
                         print('ok:', self.get_dist(pos4, pos8), self.get_dist(pos2, pos4))
