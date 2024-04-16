@@ -44,6 +44,7 @@ class ServoRunner():
     os.chdir(self.selfBaseDir)
     f = open(fileName, 'r')
     obj = json.loads(f.read())
+    print(obj)
     self.moveByList(obj['list'], durationList)
 
 
