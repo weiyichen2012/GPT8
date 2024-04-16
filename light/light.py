@@ -30,7 +30,7 @@ class LightRunner():
                 if len(pattern) > 0:
                     tmp_duration = int(pattern[0])
 
-                durations.append(tmp_duration)
+                durations.append(tmp_duration / 1000.0)
             elif 'SleepTransition' in transition:
                 tmp_duration = 1
                 pattern = regex.findall(r'duration=(.*)', transition['SleepTransition'][0])
