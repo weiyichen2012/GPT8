@@ -17,10 +17,10 @@ class ServoRunner():
     self.move(90)
   
   def smoothMoveWorker(self, degreeStart, degreeEnd, duration):
-    for i in range(0, 100):
-      print(i, degreeStart + (degreeEnd - degreeStart) * i / 100)
-      self.move(degreeStart + (degreeEnd - degreeStart) * i / 100)
-      time.sleep(duration / 100)
+    for i in range(0, 10):
+      print(i, degreeStart + (degreeEnd - degreeStart) * i / 10)
+      self.move(degreeStart + (degreeEnd - degreeStart) * i / 10)
+      time.sleep(duration / 10)
 
   def smoothMoveTo(self, degree, duration):
     print(degree, duration)
