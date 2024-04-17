@@ -23,6 +23,7 @@ def getEmotion(ifDebug=True):
     possibility_image = emotion_detection_runner.get_emotion_image("picture.jpg")
 
     maxEmotion = emotionList[0]
+
     maxPossibility = possibility_image[0] + possibility_text[0]
 
     for i in range(1, len(emotionList)):
@@ -54,11 +55,12 @@ if __name__ == '__main__':
     input()
     servo_runner.move(0)
     arm_control_runner.moveArmFile('22 see you.d6a')
+
     input()
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
     input()
     arm_control_runner.moveArmFile('reset.d6a')
-    time.sleep(2)
+    time.sleep(10)
     light_runner.startFlowByFile("firefly.json")
     durationList = light_runner.getLightJSONDurationByFile('firefly.json')
     servo_runner.moveByFile('servo_firefly.json', durationList)
