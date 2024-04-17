@@ -64,7 +64,7 @@ if __name__ == '__main__':
     light_runner.startFlowByFile("firefly.json")
     durationList = light_runner.getLightJSONDurationByFile('firefly.json')
     servo_runner.moveByFile('servo_firefly.json', durationList)
-    arm_control_runner.moveArmFile('20 firefly.d6a')
+    arm_control_runner.moveArmFile('20 fire fly.d6a')
     # input()
     # # arm_control_runner.moveArmFile('1 fast forward.d6a')
     # servo_runner.moveByListAsync([90, 0, 90, 0, 90, 0, 90, 0, 90, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
