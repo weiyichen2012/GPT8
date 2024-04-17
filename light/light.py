@@ -22,8 +22,8 @@ class LightRunner():
         while True:
             ifSuccess = False
             try:
-                self.bulb.start_flow(flow)
                 print("start flow")
+                self.bulb.start_flow(flow)
                 ifSuccess = True
             except BulbException as e:
                 continue
