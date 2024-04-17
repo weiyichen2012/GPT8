@@ -50,7 +50,7 @@ if __name__ == '__main__':
 #除了必要的动的部分其他全靠我们演
   while True:
     print("action")
-    time.sleep(10.0)
+    time.sleep(3.0)
     print('detect sad')
     light_runner.startFlowByFile("hint.json")
     arm_control_runner.moveArmFileList(['1 fast forward.d6a','5 tilt the head right slowly.d6a'])

@@ -1,12 +1,20 @@
 
-{"transitions": [
-  {"HSVTransition":[0, 0, "duration=50", "brightness=30"]},
-  {"HSVTransition":[0, 0, "duration=50", "brightness=1"]},
-  {"TemperatureTransition": ["temperature=3500", "duration=1000", "brightness=30"]}
-    ],
+{
+  "transitions": [
+    {"RGBTransition": [255, 255, 255, "duration=500", "brightness=80"]},
+    {"SleepTransition": ["duration=200"]},
+    {"RGBTransition": [255, 250, 250, "duration=500", "brightness=60"]},
+    {"SleepTransition": ["duration=300"]},
+    {"RGBTransition": [255, 255, 240, "duration=500", "brightness=70"]},
+    {"SleepTransition": ["duration=400"]},
+    {"RGBTransition": [255, 255, 255, "duration=500", "brightness=90"]},
+    {"SleepTransition": ["duration=500"]},
+    {"RGBTransition": [255, 240, 240, "duration=500", "brightness=50"]},
+    {"SleepTransition": ["duration=600"]}
+  ],
   "flow": {
-  "count": 2,
-  "action": "Flow.actions.recover",
-  "transitions": "Listed above"
+    "count": 0,
+    "action": "Flow.actions.recover",
+    "transitions": "Listed above"
   }
 }
