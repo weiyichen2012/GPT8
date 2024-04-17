@@ -52,7 +52,7 @@ if __name__ == '__main__':
     print("action")
     time.sleep(3.0)
     print('detect sad')
-    light_runner.startFlowByFile("hint.json")
+    light_runner.startFlowByFile('hint.json')
     arm_control_runner.moveArmFile('21 hint.d6a')
     print("recognize hand")
     time.sleep(10.0)  #等我们做出手势
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     # print("prepare to detect two hands")
     # time.sleep(10.0)
     print("detect 焦虑压力")
-    light_runner.startFlowByFile("wave.json")
+    light_runner.startFlowByFile('wave.json')
     durationList = light_runner.getLightJSONDurationByFile('wave.json')
     servo_runner.moveByFile('servo_waves.json', durationList)
     arm_control_runner.moveArmFile('17 waves.d6a')

@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
    #通过注释和解注释,用input去隔开（input不一定正确，需要多个）
     #眨眼睛，看向主人
-    light_runner.startFlowByFile("hint.json")
+    light_runner.startFlowByFile('hint.json')
     arm_control_runner.moveArmFile('21 hint.d6a')
 
     input()
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
     input()
     arm_control_runner.moveArmFile('reset.d6a')
-    light_runner.startFlowByFile("sunrise.json")
+    light_runner.startFlowByFile('sunrise.json')
     durationList = light_runner.getLightJSONDurationByFile('sunrise.json')
     servo_runner.moveByFile('servo_sunrise.json', durationList)
     arm_control_runner.moveArmFile('20 sun rise.d6a')

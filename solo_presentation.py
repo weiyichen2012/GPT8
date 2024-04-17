@@ -49,37 +49,34 @@ if __name__ == '__main__':
     light_runner = LightRunner(baseDir, ifDebug=False)
 
    #通过注释和解注释,用input去隔开（input不一定正确，需要多个）
-    #眨眼睛，看向主人
+    #先复位
     arm_control_runner.moveArmFile('reset.d6a')
+
+    #演示暗示
     input()
-    light_runner.startFlowByFile("hint.json")
+    light_runner.startFlowByFile('hint.json')
     arm_control_runner.moveArmFile('21 hint.d6a')
 
+    #演示光球汇聚
     input()
-    servo_runner.move(0)
     arm_control_runner.moveArmFile('22 see you.d6a')
+    servo_runner.move(0)
+    #演示对话时会变焦
     input()
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
 
+    #演示wave的自我表达
     input()
-    arm_control_runner.moveArmFile('reset.d6a')
     light_runner.startFlowByFile("wave.json")
     durationList = light_runner.getLightJSONDurationByFile('wave.json')
     servo_runner.moveByFile('servo_waves.json', durationList)
     arm_control_runner.moveArmFile('17 waves.d6a')
 
+    #创新点论证：模仿自然节律
     input()
-    servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
-
-    input()
-    arm_control_runner.moveArmFile('18 sun rise.d6a')
-
-    #创新点论证：选择自然
-    input()
-    light_runner.startFlowByFile("firefly.json")
-    input()
-    light_runner.startFlowByFile("wave.json")
-    durationList = light_runner.getLightJSONDurationByFile('wave.json')
-    servo_runner.moveByFile('servo_waves.json', durationList)
+    light_runner.startFlowByFile('firefly.json')
+    #创新点论证：抽象段落
+    light_runner.startFlowByFile('color.json')
+    #创新点论证：机械臂的基础动作库
     input()
     arm_control_runner.moveArmFileList(['1 slowly forward.d6a', '2 slowly backward.d6a', '3 turn left fast.d6a', '4 turn right slowly.d6a', '5 tilt the head left fast.d6a', 'n head up slowly.d6a'])
