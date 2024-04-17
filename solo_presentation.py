@@ -50,6 +50,7 @@ if __name__ == '__main__':
 
    #通过注释和解注释,用input去隔开（input不一定正确，需要多个）
     #眨眼睛，看向主人
+    arm_control_runner.moveArmFile('reset.d6a')
     input()
     light_runner.startFlowByFile("hint.json")
     arm_control_runner.moveArmFile('21 hint.d6a')
