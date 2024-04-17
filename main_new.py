@@ -105,7 +105,7 @@ if __name__ == '__main__':
         # print("焦虑压力")
           light_runner.startFlowByFile("wave.json")
           durationList = light_runner.getLightJSONDurationByFile('wave.json')
-          servo_runner.moveByFile('servo1.json', durationList)
+          servo_runner.moveByFile('servo_waves.json', durationList)
           arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
 
           durationSum = 0.0
@@ -116,7 +116,7 @@ if __name__ == '__main__':
         elif "实习" in sentence or "上学" in sentence or "通宵" in sentence:
           light_runner.startFlowByFile("wave.json")
           durationList = light_runner.getLightJSONDurationByFile('wave.json')
-          servo_runner.moveByFile('servo1.json', durationList)
+          servo_runner.moveByFile('servo_waves.json', durationList)
           arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
 
           durationSum = 0.0
@@ -128,7 +128,7 @@ if __name__ == '__main__':
           if random.random() < 0.5:
             light_runner.startFlowByFile("wave.json")
             durationList = light_runner.getLightJSONDurationByFile('wave.json')
-            servo_runner.moveByFile('servo1.json', durationList)
+            servo_runner.moveByFile('servo_waves.json', durationList)
             arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
 
             durationSum = 0.0
@@ -138,7 +138,7 @@ if __name__ == '__main__':
           else:
             light_runner.startFlowByFile("hint.json")
             durationList = light_runner.getLightJSONDurationByFile('hint.json')
-            servo_runner.moveByFile('servo1.json', durationList)
+            servo_runner.moveByFile('servo_waves.json', durationList)
             arm_control_runner.moveArmFileList(['1 slow forward.d6a', '1 slow forward.d6a', '1 slow forward.d6a'])
 
             durationSum = 0.0

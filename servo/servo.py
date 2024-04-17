@@ -57,7 +57,7 @@ class ServoRunner():
 
 if __name__ == '__main__':
   servoRunner = ServoRunner(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
-  # servoRunner.moveByFile('servo1.json')
+  # servoRunner.moveByFile('servo_waves.json')
   # time.sleep(5)
   # servoRunner.move(0)
   # time.sleep(5)

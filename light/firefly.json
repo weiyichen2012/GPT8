@@ -1,0 +1,17 @@
+{
+  "transitions": [
+    {"RGBTransition": [255, 215, 0, "duration=1000", "brightness=10"]},
+    {"RGBTransition": [255, 215, 0, "duration=500", "brightness=40"]},
+    {"RGBTransition": [255, 215, 0, "duration=500", "brightness=10"]},
+    {"RGBTransition": [255, 215, 0, "duration=1000", "brightness=40"]},
+    {"RGBTransition": [255, 215, 0, "duration=300", "brightness=10"]},
+    {"RGBTransition": [255, 215, 0, "duration=800", "brightness=40"]},
+    {"RGBTransition": [255, 215, 0, "duration=500", "brightness=10"]},
+    {"RGBTransition": [255, 215, 0, "duration=1000", "brightness=40"]}
+  ],
+  "flow": {
+    "count": 5,
+    "action": "Flow.actions.recover",
+    "transitions": "Listed above"
+  }
+}

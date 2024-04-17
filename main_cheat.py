@@ -69,7 +69,7 @@ if __name__ == '__main__':
     print("detect 焦虑压力")
     light_runner.startFlowByFile("wave.json")
     durationList = light_runner.getLightJSONDurationByFile('wave.json')
-    servo_runner.moveByFile('servo1.json', durationList)
+    servo_runner.moveByFile('servo_waves.json', durationList)
     arm_control_runner.moveArmFile('17 waves.d6a')
     
 

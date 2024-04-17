@@ -1,0 +1,17 @@
+{
+  "transitions": [
+    {"RGBTRansition": [0, 0, 139, "duration=2000", "brightness=10"] },
+    {"RGBTRansition": [99, 184, 255, "duration=1000", "brightness=20"] },
+    {  "RGBTRansition": [176, 226, 255, "duration=1000", "brightness=20"]},
+    { "SleepTransition": ["duration=1000"]},
+    { "TemperatureTransition": ["temperature=1700", "duration=1000", "brightness=30"]},
+    { "RGBTRansition": [255, 255, 0, "duration=3000", "brightness=60"]},
+    { "RGBTRansition": [255, 165, 0, "duration=2000", "brightness=80"] },
+    { "TemperatureTransition": ["temperature=6500", "duration=1500", "brightness=100"]},
+    {"SleepTransition": ["duration=4000"]} ],
+  "flow": {
+    "count": 1,
+    "action": "Flow.actions.recover",
+    "transitions": "Listed above"
+  }
+}
