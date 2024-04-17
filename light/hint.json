@@ -1,3 +1,4 @@
+
 {"transitions": [
   {"HSVTransition":[0, 0, "duration=50", "brightness=30"]},
   {"HSVTransition":[0, 0, "duration=50", "brightness=1"]},

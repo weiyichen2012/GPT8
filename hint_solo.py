@@ -47,10 +47,8 @@ if __name__ == '__main__':
     servo_runner = ServoRunner(baseDir, ifDebug=False)
     light_runner = LightRunner(baseDir, ifDebug=False)
 
-   #通过注释和解注释,用input去隔开（input不一定正确，需要多个）
-    #眨眼睛，看向主人
-    # light_runner.startFlowByFile("wave.json")
-    # arm_control_runner.moveArmFile('1 fast forward.d6a')
-    # input()
-    # arm_control_runner.moveArmFile('1 fast forward.d6a')
-    servo_runner.moveByListAsync([90, 0, 90, 0, 90, 0, 90, 0, 90, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+    #单独运行hint动作
+    light_runner.startFlowByFile("hint.json")#灯眨眼
+    arm_control_runner.moveArmFile('1 fast forward.d6a')
+    input()
+    arm_control_runner.moveArmFile('1 fast forward.d6a')#单独运行后每次复位

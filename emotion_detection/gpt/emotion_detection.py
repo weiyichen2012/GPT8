@@ -27,7 +27,7 @@ class EmotionDetectionRunner():
       else:
         sentence += emotionList[i] + ", "
     sentence = "如果你听到有人说\"" + text + "\", 他是哪种情绪?" + sentence
-    sentence += " 用数字与%表达没种情绪的可能性，总和应为100%。只需回答情绪+数字。"
+    sentence += " 用数字与%表达每种情绪的可能性，总和应为100%。只需回答情绪+数字。"
 
     if self.ifDebug:
       print(sentence)

@@ -59,7 +59,7 @@ if __name__ == '__main__':
     if emotion == '悲伤' or cheatEmotionDetection:
       print('detect sad')
       #以下括号内容需要更改为使光球汇聚的代码
-      light_runner.startFlowByFile("effect1.json")#灯光忽闪一下后复位
+      light_runner.startFlowByFile("wave.json")#灯光忽闪一下后复位
       arm_control_runner.moveArmFile('1 fast forward.d6a')#机械臂摇摇脑袋后复位
 
       #等待看有没有你的手
@@ -103,8 +103,8 @@ if __name__ == '__main__':
 
         if "考试" in sentence or "焦虑" in sentence or "压力" in sentence:
         # print("焦虑压力")
-          light_runner.startFlowByFile("effect1.json")
-          durationList = light_runner.getLightJSONDurationByFile('effect1.json')
+          light_runner.startFlowByFile("wave.json")
+          durationList = light_runner.getLightJSONDurationByFile('wave.json')
           servo_runner.moveByFile('servo1.json', durationList)
           arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
 
@@ -114,8 +114,8 @@ if __name__ == '__main__':
           time.sleep(durationSum)
         #仿照这里补充完整之后你想用语音确定调用的程序！
         elif "实习" in sentence or "上学" in sentence or "通宵" in sentence:
-          light_runner.startFlowByFile("effect1.json")
-          durationList = light_runner.getLightJSONDurationByFile('effect1.json')
+          light_runner.startFlowByFile("wave.json")
+          durationList = light_runner.getLightJSONDurationByFile('wave.json')
           servo_runner.moveByFile('servo1.json', durationList)
           arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
 
@@ -126,8 +126,8 @@ if __name__ == '__main__':
         else:
           #随机执行
           if random.random() < 0.5:
-            light_runner.startFlowByFile("effect1.json")
-            durationList = light_runner.getLightJSONDurationByFile('effect1.json')
+            light_runner.startFlowByFile("wave.json")
+            durationList = light_runner.getLightJSONDurationByFile('wave.json')
             servo_runner.moveByFile('servo1.json', durationList)
             arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
 
@@ -136,8 +136,8 @@ if __name__ == '__main__':
               durationSum += duration
             time.sleep(durationSum)
           else:
-            light_runner.startFlowByFile("effect2.json")
-            durationList = light_runner.getLightJSONDurationByFile('effect2.json')
+            light_runner.startFlowByFile("hint.json")
+            durationList = light_runner.getLightJSONDurationByFile('hint.json')
             servo_runner.moveByFile('servo1.json', durationList)
             arm_control_runner.moveArmFileList(['1 slow forward.d6a', '1 slow forward.d6a', '1 slow forward.d6a'])
 
@@ -152,11 +152,11 @@ if __name__ == '__main__':
       else:
         print("not recognize four")
         # 复位机械臂
-        light_runner.startFlowByFile("effect2.json")
+        light_runner.startFlowByFile("hint.json")
         continue
 
-  # durationList = light_runner.getLightJSONDurationByFile('effect1.json')
-  # light_runner.startFlowByFile("effect1.json")
+  # durationList = light_runner.getLightJSONDurationByFile('wave.json')
+  # light_runner.startFlowByFile("wave.json")
   # arm_control_runner.moveArmFile('arm1.json', durationList)
   # servo_runner;
 

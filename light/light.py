@@ -156,5 +156,5 @@ class LightRunner():
 if __name__ == "__main__":
     lightRunner = LightRunner(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
     # json = json.loads()
-    lightRunner.startFlowByFile('effect2.json')
-    lightRunner.getLightJSONDurationByFile('effect2.json')
+    lightRunner.startFlowByFile('hint.json')
+    lightRunner.getLightJSONDurationByFile('hint.json')

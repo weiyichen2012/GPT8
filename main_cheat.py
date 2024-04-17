@@ -47,12 +47,12 @@ if __name__ == '__main__':
 
   # arm_control_runner.moveArmFile('1 fast forward.d6a')
 
-
+#除了必要的动的部分其他全靠我们演
   while True:
     print("wait for microphone, 20 seconds")
     time.sleep(20.0)
     print('detect sad')
-    light_runner.startFlowByFile("effect1.json")
+    light_runner.startFlowByFile("wave.json")
     arm_control_runner.moveArmFile('1 fast forward.d6a')      
     print("recognize hand")
     time.sleep(10.0)  #等我们做出手势
@@ -66,8 +66,8 @@ if __name__ == '__main__':
     print("prepare to detect two hands")
     time.sleep(10.0)
     print("detect 焦虑压力")
-    light_runner.startFlowByFile("effect1.json")
-    durationList = light_runner.getLightJSONDurationByFile('effect1.json')
+    light_runner.startFlowByFile("wave.json")
+    durationList = light_runner.getLightJSONDurationByFile('wave.json')
     servo_runner.moveByFile('servo1.json', durationList)
     arm_control_runner.moveArmFileList(['1 fast backward.d6a', '1 fast forward.d6a', '1 fast backward.d6a', '1 fast forward.d6a'])
     

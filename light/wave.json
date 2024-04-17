@@ -1,0 +1,16 @@
+{"transitions":[
+{"RGBTransition":[135,206,235,"duration=2000","brightness=10"]},
+{"RGBTransition":[135,206,235,"duration=2000","brightness=80"]},
+{"SleepTransition":["duration=1000"]},
+{"RGBTransition":[0,105,148,"duration=1000","brightness=60"]},
+{"RGBTransition":[0,105,148,"duration=1000","brightness=10"]},
+{"SleepTransition":["duration=1000"]},
+{"RGBTransition":[135,206,235,"duration=2000","brightness=30"]},
+{"RGBTransition":[135,206,235,"duration=2000","brightness=80"]},
+{"SleepTransition":["duration=2000"]}],
+"flow":{
+"count":3,
+"action": "Flow.actions.recover",
+"transitions": "Listed above"
+ }
+}
