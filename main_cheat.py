@@ -71,7 +71,7 @@ if __name__ == '__main__':
     servo_runner.moveByFile('servo1.json', durationList)
     arm_control_runner.moveArmFileList(['1 fast backward.d6a', '1 fast forward.d6a', '1 fast backward.d6a', '1 fast forward.d6a'])
     
-    #这里是在干嘛呀
+
     durationSum = 0.0
     for duration in durationList:
       durationSum += duration
