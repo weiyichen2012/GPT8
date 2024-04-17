@@ -23,6 +23,7 @@ class LightRunner():
             ifSuccess = False
             try:
                 self.bulb.start_flow(flow)
+                print("start flow")
                 ifSuccess = True
             except BulbException as e:
                 continue
