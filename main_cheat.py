@@ -49,27 +49,28 @@ if __name__ == '__main__':
 
 #除了必要的动的部分其他全靠我们演
   while True:
-    print("wait for microphone, 20 seconds")
-    time.sleep(20.0)
+    print("action")
+    time.sleep(10.0)
     print('detect sad')
-    light_runner.startFlowByFile("wave.json")
-    arm_control_runner.moveArmFile('1 fast forward.d6a')      
+    light_runner.startFlowByFile("hint.json")
+    arm_control_runner.moveArmFileList(['1 fast forward.d6a','5 tilt the head right slowly.d6a'])
     print("recognize hand")
     time.sleep(10.0)  #等我们做出手势
 
     # 识别到光球汇聚后的语音识别，触发后续对应程序
     print("recognize four")
     servo_runner.move(0)
+    time.sleep(5.0)
     servo_runner.moveByListAsync([90, 0, 90, 0, 90, 0, 90, 0, 90, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
     print("wait for microphone for 焦虑压力, 20 seconds")
-    time.sleep(20.0)
-    print("prepare to detect two hands")
     time.sleep(10.0)
+    # print("prepare to detect two hands")
+    # time.sleep(10.0)
     print("detect 焦虑压力")
     light_runner.startFlowByFile("wave.json")
     durationList = light_runner.getLightJSONDurationByFile('wave.json')
     servo_runner.moveByFile('servo1.json', durationList)
-    arm_control_runner.moveArmFileList(['1 fast backward.d6a', '1 fast forward.d6a', '1 fast backward.d6a', '1 fast forward.d6a'])
+    arm_control_runner.moveArmFile('17 waves.d6a')
     
 
     durationSum = 0.0
