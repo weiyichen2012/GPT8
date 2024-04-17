@@ -53,7 +53,7 @@ if __name__ == '__main__':
     time.sleep(3.0)
     print('detect sad')
     light_runner.startFlowByFile("hint.json")
-    arm_control_runner.moveArmFileList(['1 fast forward.d6a','5 tilt the head right slowly.d6a'])
+    arm_control_runner.moveArmFile('21 hint.d6a')
     print("recognize hand")
     time.sleep(10.0)  #等我们做出手势
 

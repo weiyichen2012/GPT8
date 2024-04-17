@@ -52,6 +52,7 @@ if __name__ == '__main__':
     #眨眼睛，看向主人
     light_runner.startFlowByFile("hint.json")
     arm_control_runner.moveArmFile('21 hint.d6a')
+
     input()
     servo_runner.move(0)
     arm_control_runner.moveArmFile('22 see you.d6a')
@@ -60,11 +61,7 @@ if __name__ == '__main__':
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
     input()
     arm_control_runner.moveArmFile('reset.d6a')
-    time.sleep(10)
-    light_runner.startFlowByFile("firefly.json")
-    durationList = light_runner.getLightJSONDurationByFile('firefly.json')
-    servo_runner.moveByFile('servo_firefly.json', durationList)
-    arm_control_runner.moveArmFile('20 fire fly.d6a')
-    # input()
-    # # arm_control_runner.moveArmFile('1 fast forward.d6a')
-    # servo_runner.moveByListAsync([90, 0, 90, 0, 90, 0, 90, 0, 90, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+    light_runner.startFlowByFile("sunrise.json")
+    durationList = light_runner.getLightJSONDurationByFile('sunrise.json')
+    servo_runner.moveByFile('servo_sunrise.json', durationList)
+    arm_control_runner.moveArmFile('20 sun rise.d6a')
