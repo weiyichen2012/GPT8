@@ -58,11 +58,13 @@ if __name__ == '__main__':
     light_runner.startFlowByFile('wave.json')
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
     arm_control_runner.moveArmFile('177 waves.d6a')
+    arm_control_runner.moveArmFile('reset.d6a')
 
     #演示暗示
     input()
     light_runner.startFlowByFile('hint.json')
     arm_control_runner.moveArmFile('21 hint.d6a')
+    arm_control_runner.moveArmFile('reset.d6a')
 
     #演示光球汇聚
     input()
@@ -71,12 +73,15 @@ if __name__ == '__main__':
     #演示对话时会变焦
     input()
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
+    arm_control_runner.moveArmFile('reset.d6a')
 
     #演示日出的自我表达
     input()
     light_runner.startFlowByFile("sunrise.json")
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
     arm_control_runner.moveArmFile('18 sun rise.d6a')
+    arm_control_runner.moveArmFile('reset.d6a')
+
 
     #创新点论证：模仿自然节律
     input()
