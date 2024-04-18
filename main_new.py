@@ -48,7 +48,7 @@ if __name__ == '__main__':
   audio_detection_runner.start_regonize()
   # possibility_text = emotion_detection_runner.get_emotion_text("我很伤心")
 
-  # arm_control_runner.moveArmFile('1 fast forward.d6a')
+  # arm_control_runner.moveArmFile('1 fast forward.d6a') im
 
 
   while True:
@@ -59,8 +59,8 @@ if __name__ == '__main__':
     if emotion == '悲伤' or cheatEmotionDetection:
       print('detect sad')
       #以下括号内容需要更改为使光球汇聚的代码
-      light_runner.startFlowByFile("wave.json")#灯光忽闪一下后复位
-      arm_control_runner.moveArmFile('1 fast forward.d6a')#机械臂摇摇脑袋后复位
+      arm_control_runner.moveArmFile('22 see you.d6a')
+      servo_runner.move(0)
 
       #等待看有没有你的手
       print("recognize hand")
@@ -76,7 +76,7 @@ if __name__ == '__main__':
       # 识别到触发手势，光球汇聚
       if ifRecognizeFour:
         print("recognize four")#意思是识别成功了
-        servo_runner.move(0)
+        servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
         #这里要增加一个调用机械臂动作？
         #这里应该不用：servo_runner.moveByListAsync([90, 0, 90, 0, 90, 0, 90, 0, 90, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
 
@@ -103,10 +103,10 @@ if __name__ == '__main__':
 
         if "考试" in sentence or "焦虑" in sentence or "压力" in sentence:
         # print("焦虑压力")
-          light_runner.startFlowByFile("wave.json")
-          durationList = light_runner.getLightJSONDurationByFile('wave.json')
-          servo_runner.moveByFile('servo_waves.json', durationList)
-          arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
+          light_runner.startFlowByFile("aurora.json")
+          durationList = light_runner.getLightJSONDurationByFile('aurora.json')
+          servo_runner.moveByFile('servo_aurora.json', durationList)
+          arm_control_runner.moveArmFileList("19 auioia.d6a")
 
           durationSum = 0.0
           for duration in durationList:
@@ -117,7 +117,7 @@ if __name__ == '__main__':
           light_runner.startFlowByFile("wave.json")
           durationList = light_runner.getLightJSONDurationByFile('wave.json')
           servo_runner.moveByFile('servo_waves.json', durationList)
-          arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
+          arm_control_runner.moveArmFile('177 waves.d6a')
 
           durationSum = 0.0
           for duration in durationList:
@@ -129,17 +129,17 @@ if __name__ == '__main__':
             light_runner.startFlowByFile("wave.json")
             durationList = light_runner.getLightJSONDurationByFile('wave.json')
             servo_runner.moveByFile('servo_waves.json', durationList)
-            arm_control_runner.moveArmFileList(['1 fast forward.d6a', '1 fast forward.d6a', '1 fast forward.d6a'])
+            arm_control_runner.moveArmFileList('177 waves.d6a')
 
             durationSum = 0.0
             for duration in durationList:
               durationSum += duration
             time.sleep(durationSum)
           else:
-            light_runner.startFlowByFile("hint.json")
-            durationList = light_runner.getLightJSONDurationByFile('hint.json')
-            servo_runner.moveByFile('servo_waves.json', durationList)
-            arm_control_runner.moveArmFileList(['1 slow forward.d6a', '1 slow forward.d6a', '1 slow forward.d6a'])
+            light_runner.startFlowByFile("sunrise.json")
+            durationList = light_runner.getLightJSONDurationByFile('sunrise.json')
+            servo_runner.moveByFile('servo_sunrise.json', durationList)
+            arm_control_runner.moveArmFile('18 sun rise.d6a')
 
             durationSum = 0.0
             for duration in durationList:

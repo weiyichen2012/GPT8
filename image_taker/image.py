@@ -213,7 +213,7 @@ class ImageTakerRunner():
     def __init__(self, baseDir, ifDebug=True):
         self.baseDir = baseDir
         self.ifDebug = ifDebug
-        self.outputFile = baseDir + "/picture.jpg"
+        self.outputFile = baseDir +cd "/picture.jpg"
         self.my_camera = Camera(resolution=(640, 480), outputFile=self.outputFile, ifDebug=self.ifDebug)
         self.my_camera.camera_open()
         self.handRecognitionRunner = HandRecognitionRunner(baseDir, self.my_camera, ifDebug=self.ifDebug)
