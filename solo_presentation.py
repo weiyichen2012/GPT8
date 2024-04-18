@@ -50,14 +50,14 @@ if __name__ == '__main__':
 
    #通过注释和解注释,用input去隔开（input不一定正确，需要多个）
     #先复位
-    # arm_control_runner.moveArmFile('reset.d6a')
+    arm_control_runner.moveArmFile('reset.d6a')
 
-    # #这就是lighbo
-    # input()
-    # light_runner.startFlowByFile('wave.json')
-    # durationList = light_runner.getLightJSONDurationByFile('wave.json')
-    # servo_runner.moveByFile('servo_waves.json', durationList)
-    # arm_control_runner.moveArmFile('17 waves.d6a')
+    #这就是lighbo
+    input()
+    light_runner.startFlowByFile('wave.json')
+    durationList = light_runner.getLightJSONDurationByFile('wave.json')
+    servo_runner.moveByFile('servo_waves.json', durationList)
+    arm_control_runner.moveArmFile('177 waves.d6a')
 
     #演示暗示
     # input()
