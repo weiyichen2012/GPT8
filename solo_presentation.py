@@ -52,6 +52,13 @@ if __name__ == '__main__':
     #先复位
     arm_control_runner.moveArmFile('reset.d6a')
 
+    #这就是lighbo
+    input()
+    light_runner.startFlowByFile("wave.json")
+    durationList = light_runner.getLightJSONDurationByFile('wave.json')
+    servo_runner.moveByFile('servo_waves.json', durationList)
+    arm_control_runner.moveArmFile('17 waves.d6a')
+
     #演示暗示
     input()
     light_runner.startFlowByFile('hint.json')
@@ -65,12 +72,12 @@ if __name__ == '__main__':
     input()
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
 
-    #演示wave的自我表达
+    #演示日出的自我表达
     input()
-    light_runner.startFlowByFile("wave.json")
-    durationList = light_runner.getLightJSONDurationByFile('wave.json')
-    servo_runner.moveByFile('servo_waves.json', durationList)
-    arm_control_runner.moveArmFile('17 waves.d6a')
+    light_runner.startFlowByFile("sunrise.json")
+    durationList = light_runner.getLightJSONDurationByFile('sunrise.json')
+    servo_runner.moveByFile('servo_sunrise.json', durationList)
+    arm_control_runner.moveArmFile('20 sun rise.d6a')
 
     #创新点论证：模仿自然节律
     input()
