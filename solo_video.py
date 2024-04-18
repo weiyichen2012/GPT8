@@ -56,6 +56,8 @@ if __name__ == '__main__':
     arm_control_runner.moveArmFile('21 hint.d6a')
 
     #光球看向主人
+
+
     input()
     servo_runner.move(0)
     arm_control_runner.moveArmFile('22 see you.d6a')
@@ -70,4 +72,4 @@ if __name__ == '__main__':
     light_runner.startFlowByFile('sunrise.json')
     durationList = light_runner.getLightJSONDurationByFile('sunrise.json')
     servo_runner.moveByFile('servo_sunrise.json', durationList)
-    arm_control_runner.moveArmFile('20 sun rise.d6a')
+    arm_control_runner.moveArmFile('18 sun rise.d6a')

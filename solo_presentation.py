@@ -50,13 +50,13 @@ if __name__ == '__main__':
 
    #通过注释和解注释,用input去隔开（input不一定正确，需要多个）
     #先复位
+
     arm_control_runner.moveArmFile('reset.d6a')
 
     #这就是lighbo
     input()
     light_runner.startFlowByFile('wave.json')
-    durationList = light_runner.getLightJSONDurationByFile('wave.json')
-    servo_runner.moveByFile('servo_waves.json', durationList)
+    servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
     arm_control_runner.moveArmFile('177 waves.d6a')
 
     #演示暗示
@@ -75,9 +75,8 @@ if __name__ == '__main__':
     #演示日出的自我表达
     input()
     light_runner.startFlowByFile("sunrise.json")
-    durationList = light_runner.getLightJSONDurationByFile('sunrise.json')
-    servo_runner.moveByFile('servo_sunrise.json', durationList)
-    arm_control_runner.moveArmFile('20 sun rise.d6a')
+    servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
+    arm_control_runner.moveArmFile('18 sun rise.d6a')
 
     #创新点论证：模仿自然节律
     input()
