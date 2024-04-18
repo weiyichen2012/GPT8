@@ -55,12 +55,12 @@ if __name__ == '__main__':
 
     #这就是lighbo
     input()
-    light_runner.startFlowByFile('wave.json')
+    light_runner.startFlowByFile('waves_blue.json')
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
     arm_control_runner.moveArmFile('177 waves.d6a')
 
     #演示暗示
-    # input()
+    input()
     light_runner.startFlowByFile('hint.json')
     arm_control_runner.moveArmFile('21 hint.d6a')
 
