@@ -81,6 +81,7 @@ if __name__ == '__main__':
     #创新点论证：模仿自然节律
     input()
     light_runner.startFlowByFile('firefly.json')
+    input()
     #创新点论证：抽象段落
     light_runner.startFlowByFile('color.json')
     #创新点论证：机械臂的基础动作库
