@@ -53,7 +53,7 @@ if __name__ == '__main__':
 
   while True:
     print("wait for microphone, 20 seconds")
-    time.sleep(20.0)
+    time.sleep(5.0)
     emotion = getEmotion()
     print("get emotion: ", emotion)
     if emotion == '悲伤' or cheatEmotionDetection:
@@ -67,7 +67,7 @@ if __name__ == '__main__':
       
       ifRecognizeFour = True
       #range0-300意思为总共等待300帧的手势识别，过时不侯
-      for i in range(0, 300):
+      for i in range(0, 100):
         ifTwoHandsOut, mid_x, ifGesture_fourOut, ifGesture_lanhuaOut, ifGesture_okOut = image_taker_runner.recognize_hand()
         if ifGesture_fourOut: #out，指时间到
           ifRecognizeFour = True
@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
 
         print("wait for microphone for 焦虑压力, 20 seconds")#意思是等待是否有语音触发的关键词，这里是开始作弊了，其实本来应该开始调用gpt assistant了
-        time.sleep(20.0)
+        time.sleep(10.0)
         sentence = audio_detection_runner.get_sentence()
         print("get sentence: ", sentence)
 
@@ -102,49 +102,39 @@ if __name__ == '__main__':
           continue
 
         if "考试" in sentence or "焦虑" in sentence or "压力" in sentence:
-        # print("焦虑压力")
-          light_runner.startFlowByFile("aurora.json")
-          durationList = light_runner.getLightJSONDurationByFile('aurora.json')
-          servo_runner.moveByFile('servo_aurora.json', durationList)
-          arm_control_runner.moveArmFileList("19 auioia.d6a")
+          arm_control_runner.moveArmFile('reset.d6a')
+          light_runner.startFlowByFile("firefly.json")
+          servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
+          arm_control_runner.moveArmFile("20 fire fly.d6a")
+          arm_control_runner.moveArmFile('reset.d6a')
 
-          durationSum = 0.0
-          for duration in durationList:
-            durationSum += duration
-          time.sleep(durationSum)
+
         #仿照这里补充完整之后你想用语音确定调用的程序！
         elif "实习" in sentence or "上学" in sentence or "通宵" in sentence:
-          light_runner.startFlowByFile("wave.json")
-          durationList = light_runner.getLightJSONDurationByFile('wave.json')
-          servo_runner.moveByFile('servo_waves.json', durationList)
-          arm_control_runner.moveArmFile('177 waves.d6a')
+          arm_control_runner.moveArmFile('reset.d6a')
+          light_runner.startFlowByFile("aurora.json")
+          servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
+          arm_control_runner.moveArmFile("19 auioia.d6a")
+          arm_control_runner.moveArmFile('reset.d6a')
 
-          durationSum = 0.0
-          for duration in durationList:
-            durationSum += duration
-          time.sleep(durationSum)
+
         else:
           #随机执行
           if random.random() < 0.5:
-            light_runner.startFlowByFile("wave.json")
-            durationList = light_runner.getLightJSONDurationByFile('wave.json')
-            servo_runner.moveByFile('servo_waves.json', durationList)
-            arm_control_runner.moveArmFileList('177 waves.d6a')
-
-            durationSum = 0.0
-            for duration in durationList:
-              durationSum += duration
-            time.sleep(durationSum)
-          else:
+            arm_control_runner.moveArmFile('reset.d6a')
             light_runner.startFlowByFile("sunrise.json")
-            durationList = light_runner.getLightJSONDurationByFile('sunrise.json')
-            servo_runner.moveByFile('servo_sunrise.json', durationList)
-            arm_control_runner.moveArmFile('18 sun rise.d6a')
+            servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
+            arm_control_runner.moveArmFile("18 sun rise.d6a")
+            arm_control_runner.moveArmFile('reset.d6a')
 
-            durationSum = 0.0
-            for duration in durationList:
-              durationSum += duration
-            time.sleep(durationSum)
+
+          else:
+            arm_control_runner.moveArmFile('reset.d6a')
+            light_runner.startFlowByFile('wave.json')
+            servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
+            arm_control_runner.moveArmFile('177 waves.d6a')
+            arm_control_runner.moveArmFile('reset.d6a')
+
 
         # else:
         #   ...
