@@ -73,24 +73,34 @@ if __name__ == '__main__':
     #演示对话时会变焦
     input()
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
-    arm_control_runner.moveArmFile('reset.d6a')
 
     #演示日出的自我表达
     input()
+    arm_control_runner.moveArmFile('reset.d6a')
     light_runner.startFlowByFile("sunrise.json")
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
-    arm_control_runner.moveArmFile(
+    arm_control_runner.moveArmFile("18 sun rise.d6a")
+    arm_control_runner.moveArmFile('reset.d6a')
 
-    )
+    input()
+    light_runner.startFlowByFile("firefly.json")
+    servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
+    arm_control_runner.moveArmFile("20 fire fly.d6a")
+    arm_control_runner.moveArmFile('reset.d6a')
+
+    input()
+    light_runner.startFlowByFile("aurora.json")
+    servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
+    arm_control_runner.moveArmFile("19 auioia.d6a")
     arm_control_runner.moveArmFile('reset.d6a')
 
 
-    #创新点论证：模仿自然节律
-    input()
-    light_runner.startFlowByFile('firefly.json')
-    input()
-    #创新点论证：抽象段落
-    light_runner.startFlowByFile('color.json')
-    #创新点论证：机械臂的基础动作库
-    input()
-    arm_control_runner.moveArmFileList(['1 slowly forward.d6a', '2 slowly backward.d6a', '3 turn left fast.d6a', '4 turn right slowly.d6a', '5 tilt the head left fast.d6a', 'n head up slowly.d6a'])
+    # #创新点论证：模仿自然节律
+    # input()
+    # light_runner.startFlowByFile('firefly.json')
+    # input()
+    # #创新点论证：抽象段落
+    # light_runner.startFlowByFile('color.json')
+    # #创新点论证：机械臂的基础动作库
+    # input()
+    # arm_control_runner.moveArmFileList(['1 slowly forward.d6a', '2 slowly backward.d6a', '3 turn left fast.d6a', '4 turn right slowly.d6a', '5 tilt the head left fast.d6a', 'n head up slowly.d6a'])
