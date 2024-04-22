@@ -48,6 +48,8 @@ if __name__ == '__main__':
     servo_runner = ServoRunner(baseDir, ifDebug=False)
     light_runner = LightRunner(baseDir, ifDebug=False)
 
-
-
+    arm_control_runner.moveArmFile('reset.d6a')
+    input()
     arm_control_runner.moveArmFile('22 see you.d6a')
+    input()
+    servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
