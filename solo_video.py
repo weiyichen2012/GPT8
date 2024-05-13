@@ -50,18 +50,6 @@ if __name__ == '__main__':
 
    #通过注释和解注释,用input去隔开（input不一定正确，需要多个）
     #眨眼睛，看向主人
-    arm_control_runner.moveArmFile('reset.d6a')
-    input()
-    light_runner.startFlowByFile('hint.json')
-    arm_control_runner.moveArmFile('21 hint.d6a')
-
-    #光球看向主人
-
-
-    input()
-    servo_runner.move(0)
-    arm_control_runner.moveArmFile('22 see you.d6a')
-
     #光球聚散
     input()
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
