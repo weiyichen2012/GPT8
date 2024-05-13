@@ -13,7 +13,7 @@ class LightRunner():
 
     def startFlow(self, transitions, count):
 
-        self.bulb = Bulb("192.168.1.102")
+        self.bulb = Bulb("192.168.1.104")
         flow = Flow(
             count=count,
             transitions=transitions,
