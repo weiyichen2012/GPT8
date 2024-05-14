@@ -7,7 +7,7 @@
     {"RGBTransition": [255, 223, 0, "duration=1500", "brightness=70"]},
     {"SleepTransition": ["duration=1000"]},
     {"RGBTransition": [0, 95, 170, "duration=2500", "brightness=40"]},
-    {"TemperatureTransition": ["temperature=5200, ","duration=1500", "brightness=60"]},
+    {"TemperatureTransition": ["temperature=5200","duration=1500", "brightness=60"]},
     {"RGBTransition": [255, 231, 0, "duration=1000", "brightness=90"]}
   ],
   "flow": {
