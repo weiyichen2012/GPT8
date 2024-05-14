@@ -1,0 +1,20 @@
+{
+  "transitions": [
+    {"RGBTransition": [173, 216, 230, "duration=500", "brightness=50"]},
+    {"SleepTransition": ["duration=300"]},
+    {"RGBTransition": [135, 206, 250, "duration=400", "brightness=60"]},
+    {"SleepTransition": ["duration=200"]},
+    {"RGBTransition": [176, 224, 230, "duration=500", "brightness=70"]},
+    {"RGBTransition": [0, 191, 255, "duration=600", "brightness=40"]},
+    {"SleepTransition": ["duration=300"]},
+    {"RGBTransition": [30, 144, 255, "duration=700", "brightness=30"]},
+    {"RGBTransition": [70, 130, 180, "duration=500", "brightness=90"]},
+    {"SleepTransition": ["duration=400"]},
+    {"RGBTransition": [100, 149, 237, "duration=800", "brightness=60"]}
+  ],
+  "flow": {
+    "count": 6,
+    "action": "Flow.actions.recover",
+    "transitions": "Listed above"
+  }
+}
