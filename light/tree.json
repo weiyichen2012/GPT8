@@ -10,8 +10,8 @@
     {"SleepTransition": ["duration=500"]},
     {"RGBTransition": [34, 139, 34, "duration=4500", "brightness=30"]},
     {"RGBTransition": [0, 100, 0, "duration=2000", "brightness=60"]},
-    {"TemperatureTransition": [5000, "duration=1000", "brightness=80"]},
-    {"TemperatureTransition": [2700, "duration=1500", "brightness=40"]}
+    {"TemperatureTransition": ["temperature=5000","duration=1000", "brightness=80"]},
+    {"TemperatureTransition": ["temperature=2700","duration=1500", "brightness=40"]}
   ],
   "flow": {
     "count": 5,

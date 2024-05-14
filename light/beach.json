@@ -3,15 +3,15 @@
     {"RGBTransition": [255, 215, 0, "duration=2000", "brightness=80"]},
     {"SleepTransition": ["duration=1000"]},
     {"RGBTransition": [0, 105, 180, "duration=3000", "brightness=60"]},
-    {"TemperatureTransition": [6000, "duration=2000", "brightness=50"]},
+    {"TemperatureTransition": ["temperature=6000", "duration=2000", "brightness=50"]},
     {"RGBTransition": [255, 223, 0, "duration=1500", "brightness=70"]},
     {"SleepTransition": ["duration=1000"]},
     {"RGBTransition": [0, 95, 170, "duration=2500", "brightness=40"]},
-    {"TemperatureTransition": [5200, "duration=1500", "brightness=60"]},
+    {"TemperatureTransition": ["temperature=5200, ","duration=1500", "brightness=60"]},
     {"RGBTransition": [255, 231, 0, "duration=1000", "brightness=90"]},
     {"SleepTransition": ["duration=1000"]},
     {"RGBTransition": [0, 85, 160, "duration=3500", "brightness=30"]},
-    {"TemperatureTransition": [5800, "duration=2500", "brightness=70"]}
+    {"TemperatureTransition": ["temperature=5800, ","duration=2500", "brightness=70"]}
   ],
   "flow": {
     "count": 4,
