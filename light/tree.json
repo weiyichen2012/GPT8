@@ -1,13 +1,10 @@
 {
   "transitions": [
     {"RGBTransition": [107, 142, 35, "duration=3000", "brightness=50"]},
-    {"SleepTransition": ["duration=500"]},
     {"RGBTransition": [154, 205, 50, "duration=2000", "brightness=60"]},
     {"RGBTransition": [85, 107, 47, "duration=4000", "brightness=40"]},
-    {"SleepTransition": ["duration=500"]},
     {"RGBTransition": [124, 252, 0, "duration=2500", "brightness=70"]},
     {"RGBTransition": [0, 128, 0, "duration=3000", "brightness=50"]},
-    {"SleepTransition": ["duration=500"]},
     {"RGBTransition": [34, 139, 34, "duration=4500", "brightness=30"]},
     {"RGBTransition": [0, 100, 0, "duration=2000", "brightness=60"]},
     {"TemperatureTransition": ["temperature=5000","duration=1000", "brightness=80"]},
