@@ -109,6 +109,7 @@ if __name__ == '__main__':
           arm_control_runner.moveArmFile('reset.d6a')
 
 
+
         #仿照这里补充完整之后你想用语音确定调用的程序！
         elif "实习" in sentence or "上学" in sentence or "通宵" in sentence:
           arm_control_runner.moveArmFile('reset.d6a')

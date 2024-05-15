@@ -55,10 +55,7 @@ if __name__ == '__main__':
 
     #这就是lighbo
     input()
-    light_runner.startFlowByFile('wave.json')
-    servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
-    arm_control_runner.moveArmFile('177 waves.d6a')
-    arm_control_runner.moveArmFile('reset.d6a')
+
 
     #演示暗示
     input()
@@ -83,6 +80,11 @@ if __name__ == '__main__':
     arm_control_runner.moveArmFile('reset.d6a')
 
     input()
+    light_runner.startFlowByFile("rain.json")
+    arm_control_runner.moveArmFile("23 happyhappyhappy.d6a")
+    arm_control_runner.moveArmFile('reset.d6a')
+
+    input()
     light_runner.startFlowByFile("firefly.json")
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
     arm_control_runner.moveArmFile("20 fire fly.d6a")
@@ -93,6 +95,18 @@ if __name__ == '__main__':
     servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
     arm_control_runner.moveArmFile("19 auioia.d6a")
     arm_control_runner.moveArmFile('reset.d6a')
+
+    input()
+    light_runner.startFlowByFile("tree.json")
+    arm_control_runner.moveArmFile("tree.d6a")
+    arm_control_runner.moveArmFile('reset.d6a')
+
+    input()
+    light_runner.startFlowByFile("beach.json")
+    arm_control_runner.moveArmFile("177 waves.d6a")
+    arm_control_runner.moveArmFile('reset.d6a')
+
+
 
 
     # #创新点论证：模仿自然节律
