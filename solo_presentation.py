@@ -91,12 +91,6 @@ if __name__ == '__main__':
     arm_control_runner.moveArmFile('reset.d6a')
 
     input()
-    light_runner.startFlowByFile("aurora.json")
-    servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
-    arm_control_runner.moveArmFile("19 auioia.d6a")
-    arm_control_runner.moveArmFile('reset.d6a')
-
-    input()
     light_runner.startFlowByFile("tree.json")
     arm_control_runner.moveArmFile("tree.d6a")
     arm_control_runner.moveArmFile('reset.d6a')
