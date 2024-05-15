@@ -112,9 +112,9 @@ if __name__ == '__main__':
         #仿照这里补充完整之后你想用语音确定调用的程序！
         elif "实习" in sentence or "上学" in sentence or "通宵" in sentence:
           arm_control_runner.moveArmFile('reset.d6a')
-          light_runner.startFlowByFile("aurora.json")
+          light_runner.startFlowByFile("beach.json")
           servo_runner.moveByListAsync([180, 0, 180, 0, 180, 0], [2, 2, 2, 2, 2, 2])
-          arm_control_runner.moveArmFile("19 auioia.d6a")
+          arm_control_runner.moveArmFile("177 waves.d6a")
           arm_control_runner.moveArmFile('reset.d6a')
 
 
